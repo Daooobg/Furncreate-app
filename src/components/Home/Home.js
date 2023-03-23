@@ -2,7 +2,6 @@ import classes from './Home.module.css';
 
 const Home = () => {
   return (
-    // <div className={classes.container}>
       <div className={classes.banner}>
         <h1>
           Welcome to <span>Furncreate</span>
@@ -18,7 +17,6 @@ const Home = () => {
           Shop now!
         </button>
       </div>
-    // </div>
   );
 };
 
