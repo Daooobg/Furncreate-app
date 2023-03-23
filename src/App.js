@@ -1,9 +1,12 @@
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
+const router = createBrowserRouter([]);
 function App() {
   return (
-    <p>Hello World!</p>
+    <RouterProvider router={router}>
+      <p>Hello World!</p>
+    </RouterProvider>
   );
 }
 
