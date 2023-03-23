@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useRouteLoaderData } from 'react-router-dom';
-// import img from '../../images/ralph-ravi-kayden-zSG-kd-L6vw-unsplash.jpg';
 
 import classes from './MainNavigation.module.css';
-// import NewsletterSignup from './NewsletterSignup';
 
 function MainNavigation() {
-  
   const result = useRouteLoaderData('root');
-  const [token, setToken] = useState(result)
-  
+  const [token, setToken] = useState('');
 
+  console.log(token)
+  useEffect(() => {
+    setToken(result);
+  }, [result]);
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
 
   const onChangeHandler = () => {
@@ -20,7 +20,6 @@ function MainNavigation() {
   const logoutHandler = () => {
     localStorage.removeItem('auth');
     setHamburgerMenu((prevHamburgerMenu) => !prevHamburgerMenu);
-    
   };
 
   return (
@@ -72,7 +71,7 @@ function MainNavigation() {
           {!token && (
             <li className={classes['nav-item']}>
               <Link
-                to="/"
+                to="/auth?mode=login"
                 onClick={onChangeHandler}
                 className={classes['nav-link']}
               >
@@ -83,7 +82,7 @@ function MainNavigation() {
           {!token && (
             <li className={classes['nav-item']}>
               <Link
-                to="/"
+                to="/auth?mode=register"
                 onClick={onChangeHandler}
                 className={classes['nav-link']}
               >
@@ -92,15 +91,17 @@ function MainNavigation() {
             </li>
           )}
 
-          {token && <li className={classes['nav-item']}>
-            <Link
-              to="/"
-              onClick={logoutHandler}
-              className={classes['nav-link']}
-            >
-              Logout
-            </Link>
-          </li>}
+          {token && (
+            <li className={classes['nav-item']}>
+              <Link
+                to="/"
+                onClick={logoutHandler}
+                className={classes['nav-link']}
+              >
+                Logout
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </>

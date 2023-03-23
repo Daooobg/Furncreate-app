@@ -2,13 +2,20 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import RootLayout from './pages/Root';
 import HomePage from './pages/Home';
-
+import AuthenticationPage, {
+  action as authAction,
+} from './pages/Authentication';
+import { tokenLoader } from './UI/auth';
 const router = createBrowserRouter([
   {
     path: '/',
     id: 'root',
+    loader: tokenLoader,
     element: <RootLayout />,
-    children: [{ index: true, element: <HomePage /> }],
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: 'auth', element: <AuthenticationPage />, action: authAction },
+    ],
   },
 ]);
 function App() {
