@@ -6,11 +6,14 @@ import AuthenticationPage, {
   action as authAction,
 } from './pages/Authentication';
 import { tokenLoader } from './UI/auth';
+import ErrorPage from './pages/Error';
+
 const router = createBrowserRouter([
   {
     path: '/',
     id: 'root',
     loader: tokenLoader,
+    errorElement: <ErrorPage />,
     element: <RootLayout />,
     children: [
       { index: true, element: <HomePage /> },
