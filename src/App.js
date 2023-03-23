@@ -7,6 +7,9 @@ import AuthenticationPage, {
 } from './pages/Authentication';
 import { tokenLoader } from './UI/auth';
 import ErrorPage from './pages/Error';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchProductsData } from './store/products-actions';
 
 const router = createBrowserRouter([
   {
@@ -22,11 +25,13 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return (
-    <RouterProvider router={router}>
-      <p>Hello World!</p>
-    </RouterProvider>
-  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProductsData());
+  }, [dispatch]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
