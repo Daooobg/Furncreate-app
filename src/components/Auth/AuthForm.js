@@ -89,9 +89,7 @@ const AuthForm = () => {
     setIsTouched((state) => ({ ...state, [e.target.name]: true }));
   };
 
-  console.log(isLogin);
-  console.log(errors);
-  console.log(formIsValid);
+
   return (
       <div className={classes.container}>
         <Link className={classes.cancel} to={'/'}>

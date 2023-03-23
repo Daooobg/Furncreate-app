@@ -7,7 +7,7 @@ function MainNavigation() {
   const result = useRouteLoaderData('root');
   const [token, setToken] = useState('');
 
-  console.log(token)
+
   useEffect(() => {
     setToken(result);
   }, [result]);

@@ -13,7 +13,7 @@ export async function action({ request }) {
   if (mode !== 'login' && mode !== 'register') {
     mode = 'login';
   }
-  console.log(mode);
+
   const data = await request.formData();
   const authData = {
     name: data.get('name'),
@@ -21,7 +21,7 @@ export async function action({ request }) {
     password: data.get('password'),
     repeatPassword: data.get('repeatPassword'),
   };
-  console.log(authData);
+
   const response = await fetch('http://localhost:5000/api/v1/users/' + mode, {
     method: 'POST',
     headers: {
