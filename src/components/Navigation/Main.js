@@ -1,7 +1,14 @@
 import classes from './Main.module.css';
+import { useLocation } from 'react-router-dom';
 
 const Main = (props) => {
-  return <main className={classes['container-main']}>{props.children}</main>;
+  const { pathname } = useLocation();
+  // console.log(pathname)
+  let mainClass = classes['container-main'];
+  if (pathname.includes('/catalog')) {
+    mainClass = `${classes['container-catalog']}`;
+  }
+  return <main className={mainClass}>{props.children}</main>;
 };
 
 export default Main;

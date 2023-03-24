@@ -52,7 +52,7 @@ function MainNavigation() {
           </li>
           <li className={classes['nav-item']}>
             <Link
-              to="/"
+              to="/catalog"
               onClick={onChangeHandler}
               className={classes['nav-link']}
             >

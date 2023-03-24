@@ -12,3 +12,9 @@
   overflow-x: hidden;
   position: relative;
 }
+
+.container-catalog {
+  background-color: antiquewhite;
+  width: 100%;
+  min-height: 100vh;
+}
