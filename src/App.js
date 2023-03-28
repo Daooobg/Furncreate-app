@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchProductsData } from './store/products-actions';
 import CatalogPage from './pages/Catalog';
+import SingleProductPage from './pages/SingleProductPage';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,13 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'auth', element: <AuthenticationPage />, action: authAction },
-      { path: 'catalog', element: <CatalogPage /> },
+      {
+        path: 'catalog',
+        children: [
+          { index: true, element: <CatalogPage /> },
+          { path: ':id', element: <SingleProductPage /> },
+        ],
+      },
     ],
   },
 ]);
