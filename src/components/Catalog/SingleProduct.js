@@ -53,9 +53,15 @@ const SingleProduct = () => {
             {product.type}
           </p>
           <hr />
-          <Link to="/cart" Ivaylo className={classes['nav-link']}>
+          <Link to="/cart" className={classes['nav-link']}>
             add to cart
           </Link>
+          <Link to="edit" className={classes['nav-link']}>
+            edit
+          </Link>
+          <button type='button' className={classes['nav-link']}>
+            delete
+          </button>
         </section>
       </div>
     </>

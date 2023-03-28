@@ -37,10 +37,11 @@
 }
 
 .nav-link {
-    padding: 50px 0;
     max-width: 400px;
     text-align: center;
     text-decoration: none;
+    background-color: inherit;
+    border: none;
     font-size: 22px;
     color: black;
     font-weight: 300;
@@ -48,6 +49,7 @@
     text-transform: uppercase;
     position: relative;
     padding: 3px 0;
+    margin-right: 40px;
   }
   
   .nav-link::before,

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { productsActions } from '../../store/products-slice';
 import { formatPrice, getUniqueValues } from '../../UI/helpers';
@@ -77,6 +78,9 @@ const Filter = () => {
           value={price}
         />
       </div>
+      <Link to="create" className={classes['nav-link']}>
+        create
+      </Link>
     </div>
   );
 };
