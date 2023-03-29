@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { fetchProductsData } from './store/products-actions';
 import CatalogPage from './pages/Catalog';
 import SingleProductPage from './pages/SingleProductPage';
+import EditPage from './pages/EditPage';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <CatalogPage /> },
           { path: ':id', element: <SingleProductPage /> },
+          { path: ':id/edit', element: <EditPage /> },
         ],
       },
     ],
