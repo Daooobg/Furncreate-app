@@ -64,7 +64,6 @@ export const fetchSingleProductData = (id) => {
     };
     try {
       const product = await fetchSingleData(id);
-      // console.log(product);
       dispatch(
         productsActions.loadSingleProduct({
           singleProduct: { ...product } || {},
@@ -97,23 +96,15 @@ export const fetchEditSingleProductData = (id, authData) => {
           body: JSON.stringify(authData),
         }
       );
-      console.log('response', response);
       if (!response.ok) {
         throw new Error('Could not fetch data');
       }
       const data = await response.json();
-      console.log('data', data);
       return data;
     };
     try {
       const product = await fetchEditSingleData(id, authData);
-      console.log('productfetch', product);
       dispatch(productsActions.updateProducts(product));
-      // dispatch(
-      //   productsActions.loadSingleProduct({
-      //     singleProduct: { ...product } || {},
-      //   })
-      // );
       dispatch(
         uiActions.showNotification({
           status: 'success',

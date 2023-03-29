@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Link,
-  redirect,
-  useActionData,
   useNavigate,
   useParams,
 } from 'react-router-dom';
@@ -15,9 +13,7 @@ import {
 import { label } from '../../UI/splitLabel';
 import classes from './EditProductForm.module.css';
 import LoadProductImage from './LoadProductImage';
-import { editProduct } from '../../store/products-actions';
 import { productsActions } from '../../store/products-slice';
-import { useState } from 'react';
 import Loading from '../LoadingSpinner/Loading';
 
 const EditProductForm = () => {
@@ -30,16 +26,11 @@ const EditProductForm = () => {
 
   const product = useSelector((state) => state.products.singleProduct);
   const notification = useSelector((state) => state.ui.notification);
-  console.log('product', product);
-  console.log(notification);
+  
   if (notification.status === 'loading') {
     return <Loading />
   }
-  // const [product, setProduct] = useState({})
-  // useEffect(() =>{
-  //     setProduct({...data})
-  // },[data])
-  console.log(notification)
+ 
   if (notification.status === 'error') {
     return <h1>{notification.message}</h1>;
   }
@@ -63,7 +54,6 @@ const EditProductForm = () => {
       type: product.type,
       warranty: product.warranty,
     };
-    console.log(data);
     dispatch(fetchEditSingleProductData(product._id, data));
     return navigate(`/catalog/${data.slug}`);
   };

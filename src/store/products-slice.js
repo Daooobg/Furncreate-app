@@ -77,7 +77,6 @@ const productsSlice = createSlice({
       state.filteredProducts = tempProducts;
     },
     updateFiltersValue(state, action) {
-      console.log(action);
       state.filters[action.payload.name] = action.payload.value;
     },
     changeSingleProduct(state, action) {

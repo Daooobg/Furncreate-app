@@ -9,19 +9,19 @@ import Loading from '../LoadingSpinner/Loading';
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const product = useSelector((state) => state.products.singleProduct);
-
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSingleProductData(id));
   }, [dispatch]);
-
+  
+  const product = useSelector((state) => state.products.singleProduct);
   const notification = useSelector((state) => state.ui.notification);
 
   if (notification.status === 'loading') {
     return <Loading />
   }
-console.log(product)
+  
   return (
     <>
       <div className={classes.section}>

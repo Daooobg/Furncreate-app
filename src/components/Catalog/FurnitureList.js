@@ -8,7 +8,6 @@ const FurnitureList = () => {
   const filtered_products = useSelector(
     (state) => state.products.filteredProducts
   );
-  console.log('filtered_products', filtered_products);
   
   return (
     <div className={classes['container-grid']}>

@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 
 const Main = (props) => {
   const { pathname } = useLocation();
-  // console.log(pathname)
   let mainClass = classes['container-main'];
   if (pathname.includes('/catalog')) {
     mainClass = `${classes['container-catalog']}`;
