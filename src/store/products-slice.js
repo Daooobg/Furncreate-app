@@ -80,6 +80,21 @@ const productsSlice = createSlice({
       console.log(action);
       state.filters[action.payload.name] = action.payload.value;
     },
+    changeSingleProduct(state, action) {
+      const name = action.payload.name;
+      const value = action.payload.value;
+      state.singleProduct[name] = value;
+      if (name === 'name' || name === 'partNumber' || name === 'type') {
+        state.singleProduct.slug = `${state.singleProduct.type.toLowerCase()}-${state.singleProduct.name.toLowerCase()}-${state.singleProduct.partNumber.toLowerCase()}`;
+      }
+    },
+    updateProducts(state, action) {
+      const tempState = state.products.map((product) =>
+        product._id === action.payload._id ? { ...action.payload } : product
+      );
+      state.filteredProducts = tempState;
+      state.products = tempState;
+    },
   },
 });
 

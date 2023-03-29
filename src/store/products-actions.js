@@ -1,3 +1,4 @@
+import { redirect } from 'react-router-dom';
 import { productsActions } from './products-slice';
 import { uiActions } from './ui-slice';
 
@@ -28,7 +29,7 @@ export const fetchProductsData = () => {
           products: products || [],
         })
       );
-      dispatch(productsActions.filter())
+      dispatch(productsActions.filter());
 
       dispatch(
         uiActions.showNotification({
@@ -52,7 +53,9 @@ export const fetchProductsData = () => {
 export const fetchSingleProductData = (id) => {
   return async (dispatch) => {
     const fetchSingleData = async (id) => {
-      const response = await fetch(`http://127.0.0.1:5000/api/v1/furniture/${id}`);
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/v1/furniture/${id}`
+      );
       if (!response.ok) {
         throw new Error('Could not fetch data');
       }
@@ -61,7 +64,7 @@ export const fetchSingleProductData = (id) => {
     };
     try {
       const product = await fetchSingleData(id);
-      console.log(product);
+      // console.log(product);
       dispatch(
         productsActions.loadSingleProduct({
           singleProduct: { ...product } || {},
@@ -79,3 +82,53 @@ export const fetchSingleProductData = (id) => {
   };
 };
 
+export const fetchEditSingleProductData = (id, authData) => {
+  return async (dispatch) => {
+    const fetchEditSingleData = async (id) => {
+      const token = localStorage.getItem('auth');
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/v1/furniture/${id}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          body: JSON.stringify(authData),
+        }
+      );
+      console.log('response', response);
+      if (!response.ok) {
+        throw new Error('Could not fetch data');
+      }
+      const data = await response.json();
+      console.log('data', data);
+      return data;
+    };
+    try {
+      const product = await fetchEditSingleData(id, authData);
+      console.log('productfetch', product);
+      dispatch(productsActions.updateProducts(product));
+      // dispatch(
+      //   productsActions.loadSingleProduct({
+      //     singleProduct: { ...product } || {},
+      //   })
+      // );
+      dispatch(
+        uiActions.showNotification({
+          status: 'success',
+          title: 'Error!',
+          message: 'Fetching cart data failed!',
+        })
+      );
+    } catch (error) {
+      dispatch(
+        uiActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: 'Fetching cart data failed!',
+        })
+      );
+    }
+  };
+};
