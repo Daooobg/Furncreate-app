@@ -1,4 +1,3 @@
-import { redirect } from 'react-router-dom';
 import { productsActions } from './products-slice';
 import { uiActions } from './ui-slice';
 
@@ -97,29 +96,66 @@ export const fetchEditSingleProductData = (id, authData) => {
         }
       );
       if (!response.ok) {
-        throw new Error('Could not fetch data');
+        throw new Error('Could not send data');
       }
       const data = await response.json();
       return data;
     };
     try {
+      dispatch(
+        uiActions.showNotification({
+          status: 'loading',
+          title: 'loading!',
+          message: 'loading cart data failed!',
+        })
+      );
       const product = await fetchEditSingleData(id, authData);
       dispatch(productsActions.updateProducts(product));
       dispatch(
         uiActions.showNotification({
           status: 'success',
-          title: 'Error!',
+          title: 'Success!',
           message: 'Fetching cart data failed!',
         })
       );
+      dispatch(productsActions.filter());
+      return product;
     } catch (error) {
       dispatch(
         uiActions.showNotification({
           status: 'error',
           title: 'Error!',
-          message: 'Fetching cart data failed!',
+          message: error.message,
         })
       );
+      throw new Error(error.message);
+    }
+  };
+};
+
+export const fetchCreateSingleProductData = (data) => {
+  return async () => {
+    const fetchCreateSingleData = async (product) => {
+      const token = localStorage.getItem('auth');
+      const response = await fetch(`http://127.0.0.1:5000/api/v1/furniture/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        body: JSON.stringify(product),
+      });
+      if (!response.ok) {
+        throw new Error('Could not send data');
+      }
+      const data = await response.json();
+      return data;
+    };
+    try {
+      const product = await fetchCreateSingleData(data);
+      return product;
+    } catch (error) {
+      throw new Error(error.message);
     }
   };
 };
