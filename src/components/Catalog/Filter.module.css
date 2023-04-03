@@ -50,3 +50,9 @@
 .nav-link:hover::after {
   transform: scaleX(1);
 }
+
+.select {
+  background-color: antiquewhite;
+  border: none;
+  text-transform: capitalize;
+}

@@ -32,7 +32,7 @@ const Filter = () => {
   return (
     <div className={classes.container}>
       <div className="form-control">
-        <h4>category</h4>
+        <h4>Category</h4>
         <div>
           {categories.map((c, index) => {
             return (
@@ -56,7 +56,7 @@ const Filter = () => {
 
       <div className="form-control">
         <h4>Colors</h4>
-        <select name="color" value={color} onChange={updateFiltersHandler}>
+        <select name="color" value={color} className={classes.select} onChange={updateFiltersHandler}>
           {colors.map((c, index) => {
             return (
               <option value={c} key={index}>
@@ -67,7 +67,7 @@ const Filter = () => {
         </select>
       </div>
       <div className="form-control">
-        <h5>price</h5>
+        <h5>Price</h5>
         <p className="price">{formatPrice(price)}</p>
         <input
           type="range"

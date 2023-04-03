@@ -4,9 +4,22 @@
     align-items: center;
     padding: 0 20px;
     margin-bottom: 30px;
+    text-transform: capitalize;
 }
 
 .dashed {
     border-top: 1px dashed black;
     margin: 0 10px
+}
+
+.search-input {
+    background-color: antiquewhite;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.sort-input {
+    background-color: antiquewhite;
+    border: none;
+    text-transform: capitalize;
 }

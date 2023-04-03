@@ -30,11 +30,11 @@ const Sort = ({ products }) => {
           <input
             type="text"
             name="text"
-            placeholder="search"
-            className="search-input"
+            placeholder="Search by name"
+            className={classes["search-input"]}
             value={filteredText}
             onChange={filteredTextHandler}
-          />
+          />:
         </div>
       </div>
       <hr className={classes.dashed} />
@@ -42,11 +42,11 @@ const Sort = ({ products }) => {
       <hr className={classes.dashed} />
 
       <form>
-        <label htmlFor="sort">sort by</label>
+        <label htmlFor="sort">Sort by</label>
         <select
           name="sort"
           id="sort"
-          className="sort-input"
+          className={classes["sort-input"]}
           value={sort}
           onChange={sortProductsHandler}
         >
