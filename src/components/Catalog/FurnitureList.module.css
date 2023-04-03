@@ -21,18 +21,31 @@
   height: 300px;
   object-fit: cover;
 }
-.text {
+.buttons-container {
   position: absolute;
-  color: black;
-  top: 50%;
-  left: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  top: 40%;
   opacity: 0;
 }
 
-.div:hover .img {
-  opacity: 0.5;
+.shopping-button {
+  text-decoration: none;
+  height: 40px;
+  width: auto;
+  color: black;
 }
 
-.img:hover + .text {
+.details-button {
+  text-decoration: none;
+  height: 40px;
+  width: auto;
+  color: black;
+}
+
+.image-container:hover .buttons-container {
   opacity: 1;
+  backdrop-filter: blur(5px);
 }
