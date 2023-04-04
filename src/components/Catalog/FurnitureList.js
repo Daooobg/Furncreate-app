@@ -4,7 +4,6 @@ import { BsBasket } from 'react-icons/bs';
 import { TbListDetails } from 'react-icons/tb';
 
 import classes from './FurnitureList.module.css';
-import { formatPrice } from '../../UI/helpers';
 
 const FurnitureList = () => {
   const filtered_products = useSelector(
@@ -15,11 +14,11 @@ const FurnitureList = () => {
     <div className={classes['container-grid']}>
       {filtered_products.map((product) => {
         return (
-          <div className={classes['image-container']}>
+          <div key={product._id} className={classes['image-container']}>
             <img className={classes.img} src={product.img} alt={product.name} />
             <div className={classes['buttons-container']}>
               <BsBasket className={classes['shopping-button']} />
-              <Link to={product.slug} key={product._id} title="Details" >
+              <Link to={product.slug} title="Details" >
                 <TbListDetails className={classes['details-button']} />
               </Link>
             </div>
