@@ -1,4 +1,4 @@
-import EditProductForm from '../components/EditProduct/EditProductForm';
+import EditProductForm from '../components/CreateAndEditProduct/EditProductForm';
 
 const EditPage = () => {
   return <EditProductForm />;

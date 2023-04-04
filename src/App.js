@@ -13,6 +13,7 @@ import { fetchProductsData } from './store/products-actions';
 import CatalogPage from './pages/Catalog';
 import SingleProductPage from './pages/SingleProductPage';
 import EditPage from './pages/EditPage';
+import CreateProduct from './components/CreateAndEditProduct/CreateProduct';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
           { index: true, element: <CatalogPage /> },
           { path: ':id', element: <SingleProductPage /> },
           { path: ':id/edit', element: <EditPage /> },
+          {path: 'create', element: <CreateProduct />}
         ],
       },
     ],
