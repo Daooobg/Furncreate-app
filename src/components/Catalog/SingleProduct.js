@@ -1,27 +1,36 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import { formatPrice } from '../../UI/helpers';
-import { fetchSingleProductData } from '../../store/products-actions';
+import {
+  deleteProductData,
+  fetchSingleProductData,
+} from '../../store/products-actions';
 import classes from './SingleProduct.module.css';
 import Loading from '../LoadingSpinner/Loading';
 
 const SingleProduct = () => {
   const { id } = useParams();
-  
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSingleProductData(id));
   }, [dispatch]);
-  
+
   const product = useSelector((state) => state.products.singleProduct);
   const notification = useSelector((state) => state.ui.notification);
 
   if (notification.status === 'loading') {
-    return <Loading />
+    return <Loading />;
   }
-  
+
+  const deleteHandler = () => {
+    dispatch(deleteProductData(product._id));
+    return navigate(`/catalog/`);
+  };
+
   return (
     <>
       <div className={classes.section}>
@@ -57,10 +66,17 @@ const SingleProduct = () => {
           <Link to="/cart" className={classes['nav-link']}>
             add to cart
           </Link>
-          <Link to={`/catalog/${product.slug}/edit`} className={classes['nav-link']}>
+          <Link
+            to={`/catalog/${product.slug}/edit`}
+            className={classes['nav-link']}
+          >
             edit
           </Link>
-          <button type='button' className={classes['nav-link']}>
+          <button
+            type="button"
+            className={classes['nav-link']}
+            onClick={deleteHandler}
+          >
             delete
           </button>
         </section>

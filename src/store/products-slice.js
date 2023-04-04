@@ -94,6 +94,17 @@ const productsSlice = createSlice({
       state.filteredProducts = tempState;
       state.products = tempState;
     },
+    addProduct(state, action) {
+      state.products.push(action.payload);
+      state.filteredProducts.push(action.payload);
+    },
+    removeProduct(state, action) {
+      const tempState = state.products.filter(
+        (product) => product._id !== action.payload
+      );
+      state.products = tempState;
+      state.filteredProducts = tempState;
+    },
   },
 });
 

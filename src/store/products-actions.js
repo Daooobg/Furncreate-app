@@ -134,7 +134,7 @@ export const fetchEditSingleProductData = (id, authData) => {
 };
 
 export const fetchCreateSingleProductData = (data) => {
-  return async () => {
+  return async (dispatch) => {
     const fetchCreateSingleData = async (product) => {
       const token = localStorage.getItem('auth');
       const response = await fetch(`http://127.0.0.1:5000/api/v1/furniture/`, {
@@ -149,10 +149,43 @@ export const fetchCreateSingleProductData = (data) => {
         throw new Error('Could not send data');
       }
       const data = await response.json();
+      dispatch(productsActions.addProduct(data));
+      dispatch(productsActions.filter());
       return data;
     };
     try {
       const product = await fetchCreateSingleData(data);
+      return product;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+};
+
+export const deleteProductData = (id) => {
+  return async (dispatch) => {
+    const deleteProduct = async (id) => {
+      const token = localStorage.getItem('auth');
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/v1/furniture/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error('Could not send data');
+      }
+
+      // dispatch(productsActions.addProduct(data));
+      dispatch(productsActions.removeProduct(id))
+      dispatch(productsActions.filter());
+    };
+    try {
+      const product = await deleteProduct(id);
       return product;
     } catch (error) {
       throw new Error(error.message);
