@@ -7,6 +7,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import validator from 'validator';
+import Modal from '../../UI/Modal';
 import { label } from '../../UI/splitLabel';
 
 import classes from './AuthForm.module.css';
@@ -89,111 +90,108 @@ const AuthForm = () => {
     setIsTouched((state) => ({ ...state, [e.target.name]: true }));
   };
 
-
   return (
-      <div className={classes.container}>
-        <Link className={classes.cancel} to={'/'}>
-          X
-        </Link>
-        <h1>{isLogin ? 'Register' : 'Log in'}</h1>
-        {data && data.error && <li>{data.error}</li>}
-        <Form method="post">
-          {isLogin && (
-            <div className={classes['form-control']}>
-              <input
-                className={values.name ? classes['span-move--up'] : ''}
-                id="name"
-                type="text"
-                name="name"
-                required
-                value={values.name}
-                onChange={onChangeHandler}
-                onBlur={onBlurHandler}
-              />
-              <label htmlFor="name">{label('Name')}</label>
-              {isTouched.name && !errors.name && (
-                <p className={classes.error}>
-                  Name should be at least 3 characters long!
-                </p>
-              )}
-            </div>
-          )}
+    <Modal>
+      <Link className={classes.cancel} to={-1}>
+        X
+      </Link>
+      <h1>{isLogin ? 'Register' : 'Log in'}</h1>
+      {data && data.error && <li>{data.error}</li>}
+      <Form method="post">
+        {isLogin && (
           <div className={classes['form-control']}>
             <input
-              className={values.email ? classes['span-move--up'] : ''}
-              id="email"
-              type="email"
-              name="email"
+              className={values.name ? classes['span-move--up'] : ''}
+              id="name"
+              type="text"
+              name="name"
               required
-              value={values.email}
+              value={values.name}
               onChange={onChangeHandler}
               onBlur={onBlurHandler}
             />
-            <label htmlFor="email">{label('Email')}</label>
-            {isTouched.email && !errors.email && (
-              <p className={classes.error}>Please provide a valid email</p>
+            <label htmlFor="name">{label('Name')}</label>
+            {isTouched.name && !errors.name && (
+              <p className={classes.error}>
+                Name should be at least 3 characters long!
+              </p>
             )}
           </div>
+        )}
+        <div className={classes['form-control']}>
+          <input
+            className={values.email ? classes['span-move--up'] : ''}
+            id="email"
+            type="email"
+            name="email"
+            required
+            value={values.email}
+            onChange={onChangeHandler}
+            onBlur={onBlurHandler}
+          />
+          <label htmlFor="email">{label('Email')}</label>
+          {isTouched.email && !errors.email && (
+            <p className={classes.error}>Please provide a valid email</p>
+          )}
+        </div>
+        <div className={classes['form-control']}>
+          <input
+            className={values.password ? classes['span-move--up'] : ''}
+            id="password"
+            type="password"
+            name="password"
+            required
+            value={values.password}
+            onChange={onChangeHandler}
+            onBlur={onBlurHandler}
+          />
+          <label htmlFor="password">{label('Password')}</label>
+          {isTouched.password && !errors.password && (
+            <p className={classes.error}>
+              Password should be at least 6 characters long!
+            </p>
+          )}
+        </div>
+        {isLogin && (
           <div className={classes['form-control']}>
             <input
-              className={values.password ? classes['span-move--up'] : ''}
-              id="password"
+              className={values.repeatPassword ? classes['span-move--up'] : ''}
+              id="repeatPassword"
               type="password"
-              name="password"
+              name="repeatPassword"
               required
-              value={values.password}
+              value={values.repeatPassword}
               onChange={onChangeHandler}
               onBlur={onBlurHandler}
             />
-            <label htmlFor="password">{label('Password')}</label>
-            {isTouched.password && !errors.password && (
+            <label htmlFor="repeatPassword">{label('Repeat Password')}</label>
+            {isTouched.repeatPassword && !errors.repeatPassword && (
               <p className={classes.error}>
                 Password should be at least 6 characters long!
               </p>
             )}
+            {errors.repeatPassword && !errors.passwordsMatch && (
+              <p className={classes.error}>Password not match</p>
+            )}
           </div>
-          {isLogin && (
-            <div className={classes['form-control']}>
-              <input
-                className={
-                  values.repeatPassword ? classes['span-move--up'] : ''
-                }
-                id="repeatPassword"
-                type="password"
-                name="repeatPassword"
-                required
-                value={values.repeatPassword}
-                onChange={onChangeHandler}
-                onBlur={onBlurHandler}
-              />
-              <label htmlFor="repeatPassword">{label('Repeat Password')}</label>
-              {isTouched.repeatPassword && !errors.repeatPassword && (
-                <p className={classes.error}>
-                  Password should be at least 6 characters long!
-                </p>
-              )}
-              {errors.repeatPassword && !errors.passwordsMatch && (
-                <p className={classes.error}>Password not match</p>
-              )}
-            </div>
-          )}
+        )}
 
-          <button disabled={!formIsValid} className={classes.btn}>
-            {isSubmitting ? 'Submitting...' : isLogin ? 'Register' : 'Log in'}
-          </button>
+        <button disabled={!formIsValid} className={classes.btn}>
+          {isSubmitting ? 'Submitting...' : isLogin ? 'Register' : 'Log in'}
+        </button>
 
-          <p className={classes.text}>
-            {isLogin ? 'You have an account' : "Don't have an account"}
+        <p className={classes.text}>
+          {isLogin ? 'You have an account' : "Don't have an account"}
 
-            <Link
-              to={`?mode=${isLogin ? 'login' : 'register'}`}
-              className={classes.forward}
-            >
-              {isLogin ? 'Login' : 'Register'}
-            </Link>
-          </p>
-        </Form>
-      </div>
+          <Link
+            to={`?mode=${isLogin ? 'login' : 'register'}`}
+            className={classes.forward}
+          >
+            {isLogin ? 'Login' : 'Register'}
+          </Link>
+        </p>
+      </Form>
+    </Modal>
   );
 };
 
