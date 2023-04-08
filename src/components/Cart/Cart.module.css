@@ -1,0 +1,77 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+  top: 20vh;
+  left: 5%;
+  width: 90%;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+  background-color: black;
+  padding: 20px 40px;
+  color: white;
+}
+
+.close-shopping {
+  text-align: end;
+  color: red;
+  cursor: pointer;
+}
+
+.total {
+  display: flex;
+  justify-content: end;
+  margin: 10px;
+}
+.shopping-actions {
+  display: flex;
+  justify-content: end;
+}
+.shopping-actions button {
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #8a2b06;
+  border: 1px solid #8a2b06;
+  width: 8rem;
+  text-align: center;
+  border-radius: 6px;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: 1rem;
+  margin: 0.25rem;
+}
+
+.shopping-actions button:hover,
+.shopping-actions button:active {
+  background-color: #8a2b06;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

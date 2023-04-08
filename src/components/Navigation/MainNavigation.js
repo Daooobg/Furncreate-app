@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link, useRouteLoaderData } from 'react-router-dom';
+import { GiShoppingCart } from 'react-icons/gi';
+import { useDispatch, useSelector } from 'react-redux';
 
 import classes from './MainNavigation.module.css';
+import Cart from '../Cart/Cart';
+import { cartActions } from '../../store/cart';
 
 function MainNavigation() {
   const result = useRouteLoaderData('root');
   const [token, setToken] = useState('');
-
+  const shoppingBag = useSelector((state) => state.cart.totalProducts);
 
   useEffect(() => {
     setToken(result);
@@ -22,8 +26,25 @@ function MainNavigation() {
     setHamburgerMenu((prevHamburgerMenu) => !prevHamburgerMenu);
   };
 
+  const dispatch = useDispatch();
+  const showShoppingBagHandler = () => {
+    dispatch(cartActions.toggle());
+  };
+
   return (
     <>
+      {shoppingBag && (
+        <>
+          <Cart />
+          <span className={classes['shopping-cart-quantity']}>
+            {shoppingBag}
+          </span>
+          <GiShoppingCart
+            onClick={showShoppingBagHandler}
+            className={classes['shopping-cart']}
+          />
+        </>
+      )}
       <nav
         className={`${classes.navbar} ${
           hamburgerMenu && classes['changed-navbar']
