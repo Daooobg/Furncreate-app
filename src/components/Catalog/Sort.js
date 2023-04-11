@@ -34,11 +34,11 @@ const Sort = ({ products }) => {
             className={classes["search-input"]}
             value={filteredText}
             onChange={filteredTextHandler}
-          />:
+          />
         </div>
       </div>
       <hr className={classes.dashed} />
-      <h4>{products.filteredProducts.length} Products found</h4>
+      <h4 className={classes["products-total"]}>{products.filteredProducts.length} Products found</h4>
       <hr className={classes.dashed} />
 
       <form>
@@ -50,7 +50,7 @@ const Sort = ({ products }) => {
           value={sort}
           onChange={sortProductsHandler}
         >
-          <option value="empty">------</option>
+          <option value="empty">-------------------</option>
           <option value="price-lowest">price (lowest)</option>
           <option value="price-highest">price (highest)</option>
           <option value="name-a">name (a-z)</option>

@@ -2,38 +2,13 @@
   display: grid;
   margin: 0 auto;
   padding-top: 100px;
-  width: 80%;
+  width: 95%;
   grid-template-columns: 150px 1fr;
 }
 
-/* .div {
-  position: relative;
-} */
-
-/* .container-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-  gap: 20px;
-} */
-
-/* .img {
-
-  max-width: 400px;
-  object-fit: cover;
-} */
-/* .text {
-  position: absolute;
-  color: black;
-  top: 50%;
-  left: 30%;
-  opacity: 0;
-} */
-
-/* .div:hover  .img {
-  opacity: 0.5;
-} */
-
-/* .img:hover + .text {
-  opacity: 1;
-} */
+@media (min-width: 1600px) {
+  .container {
+    width: 80%;
+    grid-template-columns: 150px 1fr;
+  }
+}
