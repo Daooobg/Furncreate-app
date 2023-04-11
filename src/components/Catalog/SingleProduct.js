@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  useParams,
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import { formatPrice } from '../../UI/helpers';
 import {
@@ -14,7 +10,7 @@ import {
 import classes from './SingleProduct.module.css';
 import Loading from '../LoadingSpinner/Loading';
 import { cartActions } from '../../store/cart';
-import { ShoppingButtons } from '../../hooks/useButtons';
+import { NavigationButtons, ShoppingButtons } from '../../hooks/useButtons';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -81,8 +77,8 @@ const SingleProduct = () => {
   return (
     <>
       <div className={classes.section}>
-        <Link to="/catalog" className={classes['nav-link']}>
-          back to products
+        <Link to="/catalog">
+          <NavigationButtons content="Back to products" />
         </Link>
         <h1>{product.name}</h1>
         <section className={classes['product-center']}>
@@ -113,28 +109,18 @@ const SingleProduct = () => {
           <div className={classes['buttons-container']}>
             {product.quantity > 0 && (
               <div className={classes['add-container']}>
-                <ShoppingButtons action={decreaseHandler} content="-"/>
+                <ShoppingButtons action={decreaseHandler} content="-" />
                 <h2>{amount}</h2>
                 <ShoppingButtons action={increaseHandler} content="+" />
               </div>
             )}
-            <Link
-              to={`/catalog/${product.slug}/edit`}
-              className={classes['nav-link']}
-            >
-              edit
+            <Link to={`/catalog/${product.slug}/edit`}>
+              <NavigationButtons content="Edit" />
             </Link>
-            <button
-              type="button"
-              className={classes['nav-link']}
-              onClick={deleteHandler}
-            >
-              delete
-            </button>
+            <NavigationButtons action={deleteHandler} content="Delete" />
+
             {product.quantity > 0 && (
-              <button className={classes['nav-link']} onClick={addProduct}>
-                add to cart
-              </button>
+              <NavigationButtons content="add to cart" action={addProduct} />
             )}
           </div>
         </section>

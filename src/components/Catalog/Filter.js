@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { NavigationButtons } from '../../hooks/useButtons';
 
 import { productsActions } from '../../store/products-slice';
 import { formatPrice, getUniqueValues } from '../../UI/helpers';
@@ -36,19 +37,13 @@ const Filter = () => {
         <div>
           {categories.map((c, index) => {
             return (
-              <button
+              <NavigationButtons
                 key={index}
-                onClick={updateFiltersHandler}
+                action={updateFiltersHandler}
+                content={c}
                 name="category"
-                type="button"
-                className={`${
-                  category === c.toLowerCase()
-                    ? `${classes.active} ${classes['nav-link']}`
-                    : `${classes['nav-link']}`
-                }`}
-              >
-                {c}
-              </button>
+                category = {category === c.toLowerCase()}
+              />
             );
           })}
         </div>
@@ -56,7 +51,12 @@ const Filter = () => {
 
       <div className="form-control">
         <h4>Colors</h4>
-        <select name="color" value={color} className={classes.select} onChange={updateFiltersHandler}>
+        <select
+          name="color"
+          value={color}
+          className={classes.select}
+          onChange={updateFiltersHandler}
+        >
           {colors.map((c, index) => {
             return (
               <option value={c} key={index}>
@@ -78,8 +78,8 @@ const Filter = () => {
           value={price}
         />
       </div>
-      <Link to="create" className={classes['nav-link']}>
-        create
+      <Link to="create">
+      <NavigationButtons content="create" />
       </Link>
     </div>
   );
