@@ -33,7 +33,7 @@ function MainNavigation() {
 
   return (
     <>
-      {shoppingBag && (
+      {shoppingBag > 0 && (
         <>
           <Cart />
           <span className={classes['shopping-cart-quantity']}>
