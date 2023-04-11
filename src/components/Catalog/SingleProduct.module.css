@@ -94,3 +94,8 @@
 .add-container h2 {
   margin: 0;
 }
+
+.add-container button {
+  width: 4rem;
+  height: 1.5rem;
+}

@@ -4,7 +4,6 @@ import {
   useParams,
   Link,
   useNavigate,
-  useSearchParams,
 } from 'react-router-dom';
 
 import { formatPrice } from '../../UI/helpers';
@@ -15,6 +14,7 @@ import {
 import classes from './SingleProduct.module.css';
 import Loading from '../LoadingSpinner/Loading';
 import { cartActions } from '../../store/cart';
+import { ShoppingButtons } from '../../hooks/useButtons';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -113,9 +113,9 @@ const SingleProduct = () => {
           <div className={classes['buttons-container']}>
             {product.quantity > 0 && (
               <div className={classes['add-container']}>
-                <button onClick={decreaseHandler}>-</button>
+                <ShoppingButtons action={decreaseHandler} content="-"/>
                 <h2>{amount}</h2>
-                <button onClick={increaseHandler}>+</button>
+                <ShoppingButtons action={increaseHandler} content="+" />
               </div>
             )}
             <Link

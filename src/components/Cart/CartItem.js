@@ -4,6 +4,7 @@ import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import classes from './CartItem.module.css';
 import { useState } from 'react';
 import { formatPrice } from '../../UI/helpers';
+import { ShoppingButtons } from '../../hooks/useButtons';
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
@@ -35,8 +36,8 @@ const CartItem = (props) => {
       <>
         <div>
           <h4>Are you still want to remove {props.product}</h4>
-          <button onClick={removeProductHandler}>Yes</button>
-          <button onClick={cancelHandler}>No</button>
+          <ShoppingButtons action={removeProductHandler} content="Yes" />
+          <ShoppingButtons action={cancelHandler} content="No" />
         </div>
       </>
     );
@@ -50,8 +51,8 @@ const CartItem = (props) => {
           <div>
             <h2>{props.name}</h2>
             <div className={classes.actions}>
-              <button onClick={decreaseHandler}>−</button>
-              <button onClick={increaseHandler}>+</button>
+              <ShoppingButtons action={decreaseHandler} content="-" />
+              <ShoppingButtons action={increaseHandler} content="+" />
             </div>
           </div>
         )}
@@ -63,9 +64,10 @@ const CartItem = (props) => {
           </div>
         </div>
         {!active && (
-          <button onClick={confirmHandler}>
-            <MdOutlineRemoveShoppingCart />
-          </button>
+          <ShoppingButtons
+            action={confirmHandler}
+            content={<MdOutlineRemoveShoppingCart />}
+          ></ShoppingButtons>
         )}
         {active && <Confirm product={props.name} />}
       </li>

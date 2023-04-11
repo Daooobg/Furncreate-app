@@ -3,6 +3,7 @@ import { cartActions } from '../../store/cart';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import { formatPrice } from '../../UI/helpers';
+import { ShoppingButtons } from '../../hooks/useButtons';
 
 const Cart = () => {
   const {
@@ -53,7 +54,8 @@ const Cart = () => {
                 <span>{formatPrice(totalAmount)}</span>
               </div>
               <div className={classes['shopping-actions']}>
-                <button>Buy now</button>
+                <ShoppingButtons content="Buy now" />
+                {/* <button>Buy now</button> */}
               </div>
             </div>
           </div>
