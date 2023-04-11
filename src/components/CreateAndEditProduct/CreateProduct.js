@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useNavigation } from 'react-router-dom';
-import {
-  fetchCreateSingleProductData,
-
-} from '../../store/products-actions';
+import { useNavigate } from 'react-router-dom';
+import { fetchCreateSingleProductData } from '../../store/products-actions';
 import classes from './EditProductForm.module.css';
 import LoadProductImage from './LoadProductImage';
 import ProductForm from './ProductForm';
@@ -25,10 +22,6 @@ const CreateProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onChangeHandler = (e) => {
-    setProduct((state) => ({ ...state, [e.target.name]: e.target.value }));
-  };
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(fetchCreateSingleProductData(product))
@@ -46,8 +39,8 @@ const CreateProduct = () => {
         <LoadProductImage value={product.img} />
       </div>
       <ProductForm
-        onChangeHandler={onChangeHandler}
         submitHandler={submitHandler}
+        setProduct={setProduct}
         product={product}
       />
     </div>
