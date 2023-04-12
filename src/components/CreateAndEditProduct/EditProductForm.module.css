@@ -1,76 +1,20 @@
 .container {
-  width: 80%;
+  width: 95%;
   margin: 0 auto;
   padding-top: 100px;
-
+  grid-template-columns: 1fr;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-.form-container {
-  /* background-color: black; */
-  display: grid;
-  grid-template-columns: 1fr auto;
-  column-gap: 20px;
-
-  padding: 10px 20px;
-  border-radius: 5px;
-  color: white;
-  position: fixed;
-  /* right: 50%;
-    top: 20%; */
+  
 }
 
-
-.form-control {
-  color: black;
-  position: relative;
-  margin: 10px 0 20px;
-  width: 300px;
+@media (min-width: 1200px) {
+  .container {
+    width: 80%;
+  }
 }
 
-.form-control input {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px black solid;
-  display: block;
-  width: 100%;
-  padding: 15px 0;
-  font-size: 18px;
-  color: black;
-}
-
-.form-control input:focus,
-.form-control input:valid {
-  outline: 0;
-  border-bottom-color: chocolate;
-}
-
-.form-control label {
-  position: absolute;
-  top: 15px;
-  left: 0px;
-}
-
-.form-control label span {
-  display: inline-block;
-  font-size: 18px;
-  min-width: 5px;
-  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.form-control input:focus + label span,
-.form-control .span-move--up + label span {
-  color: chocolate;
-  transform: translateY(-30px);
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px black inset;
-}
-
-input:-webkit-autofill {
-  -webkit-text-fill-color: white;
+@media (min-width: 992px) {
+  .container {
+    grid-template-columns: 1fr 2fr;
+  }
 }

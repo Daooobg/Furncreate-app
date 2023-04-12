@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import classes from './EditProductForm.module.css';
+import classes from './ProductForm.module.css';
 import { label } from '../../UI/splitLabel';
 import { useState } from 'react';
 import { ShoppingButtons } from '../../hooks/useButtons';

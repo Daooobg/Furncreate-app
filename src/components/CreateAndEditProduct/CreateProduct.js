@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchCreateSingleProductData } from '../../store/products-actions';
-import classes from './EditProductForm.module.css';
+import classes from './CreateProduct.module.css';
 import LoadProductImage from './LoadProductImage';
 import ProductForm from './ProductForm';
 

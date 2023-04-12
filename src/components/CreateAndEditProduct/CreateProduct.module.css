@@ -1,0 +1,20 @@
+.container {
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 100px;
+    grid-template-columns: 1fr;
+    display: grid;
+    
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      width: 80%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
