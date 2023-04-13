@@ -83,14 +83,14 @@ export const fetchSingleProductData = (id) => {
 export const fetchEditSingleProductData = (id, authData) => {
   return async (dispatch) => {
     const fetchEditSingleData = async (id) => {
-      const token = localStorage.getItem('auth');
+      const token =JSON.parse(localStorage.getItem('auth'));
       const response = await fetch(
         `http://127.0.0.1:5000/api/v1/furniture/${id}`,
         {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            "Authorization": token.AccessToken,
           },
           body: JSON.stringify(authData),
         }
@@ -136,12 +136,12 @@ export const fetchEditSingleProductData = (id, authData) => {
 export const fetchCreateSingleProductData = (data) => {
   return async (dispatch) => {
     const fetchCreateSingleData = async (product) => {
-      const token = localStorage.getItem('auth');
+      const token =JSON.parse(localStorage.getItem('auth'));
       const response = await fetch(`http://127.0.0.1:5000/api/v1/furniture/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token,
+          'Authorization': token.AccessToken,
         },
         body: JSON.stringify(product),
       });
@@ -165,14 +165,14 @@ export const fetchCreateSingleProductData = (data) => {
 export const deleteProductData = (id) => {
   return async (dispatch) => {
     const deleteProduct = async (id) => {
-      const token = localStorage.getItem('auth');
+      const token =JSON.parse(localStorage.getItem('auth'));
       const response = await fetch(
         `http://127.0.0.1:5000/api/v1/furniture/${id}`,
         {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            'Authorization': token.AccessToken,
           },
         }
       );
