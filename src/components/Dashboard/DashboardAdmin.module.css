@@ -12,8 +12,3 @@
     font-weight: bold;
 }
 
-.data-container {
-    display: grid;
-    grid-template-columns: 150px 1fr 100px;
-    row-gap: 20px;
-}
