@@ -18,7 +18,7 @@ const DashboardAdmin = () => {
   };
 
   return (
-    <>
+    <div className={classes.actions}>
       <div className={classes['buttons-container']}>
         <NavigationButtons
           name="products"
@@ -45,7 +45,7 @@ const DashboardAdmin = () => {
         </div>
       )}
       {!text && <DashboardData action={action} />}
-    </>
+    </div>
   );
 };
 

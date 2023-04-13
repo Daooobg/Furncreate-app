@@ -13,9 +13,7 @@ const Dashboard = () => {
   return (
     <div className={classes.container}>
       <h1>Hello {userData.name}</h1>
-      <div className={classes.actions}>
         <DashboardActions userData={userData} />
-      </div>
     </div>
   );
 };
