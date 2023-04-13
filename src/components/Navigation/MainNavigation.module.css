@@ -1,3 +1,17 @@
+.container {
+  width: 150px;
+  height: 35px;
+  display: grid;
+  position: fixed;
+  grid-template-columns: 1fr 1fr;
+  top: 50px;
+  right: 90px;
+  z-index: 100;
+  color: chocolate;
+}
+.shopping-container {
+  display: flex;
+}
 .navbar {
   width: 300px;
   height: 100%;
@@ -30,23 +44,25 @@
 }
 
 .shopping-cart {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  position: fixed;
+  width: 35px;
+  height: 30px;
   cursor: pointer;
-  top: 50px;
-  right: 150px;
   z-index: 100;
   color: chocolate;
+}
+
+.account {
+  width: 35px;
+  height: 30px;
+  cursor: pointer;
+
 }
 .shopping-cart-quantity {
   background-color: black;
   color: chocolate;
   position: absolute;
   display: flex;
-  top: 50px;
-  right: 150px;
+  right: 105px;
   height: 20px;
   width: 20px;
   justify-content: center;

@@ -1,0 +1,18 @@
+.form {
+  display: grid;
+  grid-template-columns: auto 40px 50px;
+  align-items: center;
+  gap: 20px;
+}
+.form h5 {
+  margin: 0;
+}
+
+.form label {
+  text-align: end;
+  text-transform: capitalize;
+}
+
+.form input {
+  height: 20px;
+}

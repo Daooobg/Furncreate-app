@@ -1,0 +1,15 @@
+.container {
+    width: 90%;
+    padding-top: 15vh;
+    text-align: center;
+}
+
+.container h1 {
+    text-transform: capitalize;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px
+}

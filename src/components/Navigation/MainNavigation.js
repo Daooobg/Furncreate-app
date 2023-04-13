@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useRouteLoaderData } from 'react-router-dom';
 import { GiShoppingCart } from 'react-icons/gi';
+import { RiAccountCircleLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 
 import classes from './MainNavigation.module.css';
@@ -33,18 +34,26 @@ function MainNavigation() {
 
   return (
     <>
-      {shoppingBag > 0 && (
-        <>
-          <Cart />
-          <span className={classes['shopping-cart-quantity']}>
-            {shoppingBag}
-          </span>
-          <GiShoppingCart
-            onClick={showShoppingBagHandler}
-            className={classes['shopping-cart']}
-          />
-        </>
-      )}
+      <div className={classes.container}>
+        {shoppingBag > 0 && (
+          <div className={classes['shopping-container']}>
+            <Cart />
+            <span className={classes['shopping-cart-quantity']}>
+              {shoppingBag}
+            </span>
+            <GiShoppingCart
+              onClick={showShoppingBagHandler}
+              className={classes['shopping-cart']}
+            />
+          </div>
+        )}
+        {token && (
+          <Link to="dashboard">
+            {' '}
+            <RiAccountCircleLine className={classes.account} />
+          </Link>
+        )}
+      </div>
       <nav
         className={`${classes.navbar} ${
           hamburgerMenu && classes['changed-navbar']
