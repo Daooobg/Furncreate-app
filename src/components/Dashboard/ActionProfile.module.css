@@ -1,0 +1,27 @@
+.form-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr;
+  gap: 20px;
+}
+
+.form-container h1 {
+  display: grid;
+  grid-column: 1 / 5;
+}
+
+.check-box {
+  grid-column: 1/5;
+}
+
+
+.form-container label {
+  text-align: end;
+  text-transform: capitalize;
+}
+
+
+.form-container input {
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid chocolate;
+}
