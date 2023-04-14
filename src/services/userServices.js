@@ -16,3 +16,13 @@ export const updateUserRole = async (data) => {
   const result = await request.patch(baseUrl + 'updateUserRole', data);
   return result;
 };
+
+export const updateLoginUserData = async (data, checked) => {
+  //At his point couth be updated only address
+  const userData = data;
+  if (checked) {
+    userData.shippingAddress = data.address 
+  }
+  const result = await request.patch(baseUrl + 'getUser', userData);
+  return result;
+};
