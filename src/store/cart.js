@@ -93,6 +93,11 @@ const cartSlice = createSlice({
       state.totalAmount = tempAmount;
       state.totalProducts = totalProducts;
     },
+    clearShoppingBag(state, action) {
+      state.shoppingBag = [];
+      state.totalProducts = 0;
+      state.totalAmount = 0;
+    },
   },
 });
 
