@@ -1,0 +1,7 @@
+.container {
+    width: 60%;
+    position: relative;
+    left: 20%;
+    display: grid;
+    grid-template-columns: 200px auto;
+}
