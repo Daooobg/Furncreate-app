@@ -6,7 +6,7 @@ const DashboardActions = (props) => {
     if (props.userData.role === 'admin') {
       return <DashboardAdmin />;
     } else if (props.userData.role === 'user') {
-      return <DashboardUser />;
+      return <DashboardUser userData={props.userData} />;
     } else {
       return <h1>Something went wrong!</h1>;
     }
