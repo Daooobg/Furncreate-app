@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { RiAccountCircleLine } from 'react-icons/ri';
 import { ShoppingButtons } from '../../hooks/useButtons';
 import { getAllUsers, updateUserRole } from '../../services/userServices';
 import { formField } from '../../UI/helpers';
@@ -11,7 +9,6 @@ const ActionUsers = () => {
   useEffect(() => {
     getAllUsers().then((data) => setUserData(data));
   }, []);
-  console.log('userData', userData.length);
 
   if (userData.length > 0) {
     const data = userData.map((user, index) => {
@@ -26,7 +23,6 @@ const ActionUsers = () => {
 export default ActionUsers;
 
 const ActionForm = (props) => {
-  const dispatch = useDispatch();
   const [data, setData] = useState(props.data);
   const [disable, setDisable] = useState(true);
   const editHandler = () => setDisable(false);
@@ -41,9 +37,6 @@ const ActionForm = (props) => {
     updateUserRole({id:data._id, role:data.role})
     setDisable(true);
   };
-  // const deleteHandler = () => {
-  //   dispatch(deleteProductData(data._id));
-  // };
 
   return (
     <>
