@@ -1,6 +1,7 @@
 import ActionComments from './ActionComments';
 import ActionProducts from './ActionProducts';
 import ActionProfile from './ActionProfile';
+import ActionPurchasesAdmin from './ActionPurchasesAdmin';
 import ActionPurchasesUser from './ActionPurchasesUser';
 import ActionUsers from './ActionUsers';
 import classes from './DashboardData.module.css';
@@ -31,6 +32,11 @@ const DashboardData = (props) => {
       {props.action === 'purchases' && (
         <div>
           <ActionPurchasesUser />
+        </div>
+      )}
+      {props.action === 'allPurchases' && (
+        <div>
+          <ActionPurchasesAdmin />
         </div>
       )}
     </>

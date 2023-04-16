@@ -1,0 +1,19 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.container h6 {
+    margin: 5px;
+    text-align: start;
+    text-transform: capitalize;
+
+}
+
+.container h4 {
+    text-align: start;
+    text-transform: capitalize;
+}

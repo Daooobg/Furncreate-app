@@ -14,6 +14,8 @@ const DashboardAdmin = () => {
       setAction('products');
     } else if (e.target.name === 'users') {
       setAction('users');
+    } else if (e.target.name === 'allPurchases'){
+      setAction('allPurchases')
     }
   };
 
@@ -30,17 +32,23 @@ const DashboardAdmin = () => {
           content="users"
           action={actionHandler}
         />
+        <NavigationButtons
+          name="allPurchases"
+          content="Purchases"
+          action={actionHandler}
+        />
       </div>
       {text && (
         <div>
           <h2 className={classes['button-introduction']}>
-            {`<---You are admin and you can check create edit and delete products when you
-            pres Product button`}
+            {`<---You are the admin, and you can check, create, edit and delete products when you press the product button.`}
           </h2>
 
           <h2 className={classes['button-introduction']}>
-            {`<---You are admin and you can see all users and change  users role when you
-            pres Users button`}
+            {`<---You are the admin, and you can see all users and change users' roles when you press the users button`}
+          </h2>
+          <h2 className={classes['button-introduction']}>
+            {`<---You are the admin, and you can see all user's purchases when you press the purchases button`}
           </h2>
         </div>
       )}
