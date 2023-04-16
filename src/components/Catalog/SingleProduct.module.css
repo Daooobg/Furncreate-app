@@ -24,9 +24,6 @@
   width: 300px;
   display: grid;
   grid-template-columns: 125px 1fr;
-  /* span {
-      font-weight: 700;
-    } */
 }
 .info span {
   font-weight: 700;
@@ -54,4 +51,23 @@
 .add-container button {
   width: 4rem;
   height: 1.5rem;
+}
+
+.form-range {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: chocolate;
+  align-items: center;
+}
+
+.form-range input[type='range']{
+  background-color: chocolate;
+  height: 3px;
+  -webkit-appearance: none;
+}
+
+.modal-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
 }

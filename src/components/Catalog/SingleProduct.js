@@ -5,12 +5,14 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { formatPrice } from '../../UI/helpers';
 import {
   deleteProductData,
+  fetchCreateCommentData,
   fetchSingleProductData,
 } from '../../store/products-actions';
 import classes from './SingleProduct.module.css';
 import Loading from '../LoadingSpinner/Loading';
 import { cartActions } from '../../store/cart';
 import { NavigationButtons, ShoppingButtons } from '../../hooks/useButtons';
+import Modal from '../../UI/Modal';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -33,6 +35,9 @@ const SingleProduct = () => {
   }
 
   const [amount, setAmount] = useState(1);
+  const [commentsModal, setCommentsModal] = useState(false);
+  const [comment, setComment] = useState('');
+  const [starsRange, setStarsRange] = useState(5);
   useEffect(() => {
     if (availableAmount <= 0) {
       setAmount(0);
@@ -74,8 +79,68 @@ const SingleProduct = () => {
     setAmount((amount) => amount - 1);
   };
 
+  const addCommentHandler = () => {
+    setCommentsModal(true);
+  };
+
+  const closeModalHandler = () => {
+    setCommentsModal(false);
+  };
+
+  const changeCommentHandler = (e) => {
+    setComment(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setComment('');
+    setCommentsModal(false);
+    dispatch(
+      fetchCreateCommentData(product.slug, {
+        comment,
+        starsRange,
+        id: product._id,
+      })
+    );
+    console.log('text', comment, starsRange);
+  };
+
+  const changeStarsRangeHandler = (e) => {
+    setStarsRange(e.target.value);
+  };
+
   return (
     <>
+      {commentsModal && (
+        <Modal onClose={closeModalHandler}>
+          <form onSubmit={submitHandler}>
+            <label htmlFor="comment"></label>
+            <textarea
+              id="comment"
+              rows="10"
+              cols="40"
+              placeholder="Describe your comment here...."
+              value={comment}
+              onChange={changeCommentHandler}
+            />
+            <div className={classes['form-range']}>
+              <h4>Stars: ({starsRange})</h4>
+              <input
+                type="range"
+                name="price"
+                onChange={changeStarsRangeHandler}
+                min={1}
+                max={5}
+                value={starsRange}
+              />
+            </div>
+            <div className={classes['modal-buttons']}>
+              <ShoppingButtons content="Submit" />
+              <ShoppingButtons content="Cancel" action={closeModalHandler} />
+            </div>
+          </form>
+        </Modal>
+      )}
       <div className={classes.section}>
         <Link to="/catalog">
           <NavigationButtons content="Back to products" />
@@ -122,6 +187,10 @@ const SingleProduct = () => {
             {product.quantity > 0 && (
               <NavigationButtons content="add to cart" action={addProduct} />
             )}
+            <NavigationButtons
+              content="Add comment"
+              action={addCommentHandler}
+            />
           </div>
         </section>
       </div>
