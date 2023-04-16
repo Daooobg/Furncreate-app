@@ -60,7 +60,7 @@
   align-items: center;
 }
 
-.form-range input[type='range']{
+.form-range input[type='range'] {
   background-color: chocolate;
   height: 3px;
   -webkit-appearance: none;
@@ -70,4 +70,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
+}
+.comments {
+  text-align: center;
+}
+.comments-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  gap: 50px;
+
 }

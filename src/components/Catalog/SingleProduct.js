@@ -13,6 +13,8 @@ import Loading from '../LoadingSpinner/Loading';
 import { cartActions } from '../../store/cart';
 import { NavigationButtons, ShoppingButtons } from '../../hooks/useButtons';
 import Modal from '../../UI/Modal';
+import Comments from './Comments';
+import Stars from './Stars';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -109,6 +111,11 @@ const SingleProduct = () => {
     setStarsRange(e.target.value);
   };
 
+  let stars = 0;
+  if (product.comments) {
+    stars = product.comments.reduce((acc, value) => acc + value.rating, 0);
+  }
+ 
   return (
     <>
       {commentsModal && (
@@ -151,6 +158,11 @@ const SingleProduct = () => {
         </section>
         <section className="content">
           <h3 className={classes.price}>{formatPrice(product.price)}</h3>
+          <h3>
+            {stars > 0 && (
+              <Stars stars={stars / product.comments.length} comments={product.comments.length} />
+            )}
+          </h3>
           <p className={classes.desc}>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis
             atque quia, deleniti nam aut, obcaecati quae fugit ipsam fuga velit
@@ -193,6 +205,25 @@ const SingleProduct = () => {
             />
           </div>
         </section>
+      </div>
+      <div>
+        {product.comments && (
+          <div className={classes.comments}>
+            <h2>Comments</h2>
+            <div className={classes['comments-container']}>
+              {product.comments.slice(-3).reverse().map((item, index) => {
+                return (
+                  <Comments
+                    key={index}
+                    comment={item.comment}
+                    rating={item.rating}
+                    name={item.ownerId.name}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
