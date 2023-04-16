@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import classes from './Modal.module.css';
+import classes from './ModalAuth.module.css';
 
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose} />;

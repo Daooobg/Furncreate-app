@@ -7,7 +7,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import validator from 'validator';
-import Modal from '../../UI/Modal';
+import Modal from '../../UI/ModalAuth';
 import { label } from '../../UI/splitLabel';
 
 import classes from './AuthForm.module.css';
