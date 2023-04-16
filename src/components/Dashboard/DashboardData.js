@@ -1,4 +1,3 @@
-import ActionComments from './ActionComments';
 import ActionProducts from './ActionProducts';
 import ActionProfile from './ActionProfile';
 import ActionPurchasesAdmin from './ActionPurchasesAdmin';
@@ -22,11 +21,6 @@ const DashboardData = (props) => {
       {props.action === 'profile' && (
         <div>
           <ActionProfile userData={props.userData} />
-        </div>
-      )}
-      {props.action === 'comments' && (
-        <div>
-          <ActionComments />
         </div>
       )}
       {props.action === 'purchases' && (
