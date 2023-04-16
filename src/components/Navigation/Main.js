@@ -4,7 +4,11 @@ import { useLocation } from 'react-router-dom';
 const Main = (props) => {
   const { pathname } = useLocation();
   let mainClass = classes['container-main'];
-  if (pathname.includes('/catalog') || pathname.includes('/dashboard')) {
+  if (
+    pathname.includes('/catalog') ||
+    pathname.includes('/dashboard') ||
+    pathname.includes('/gallery')
+  ) {
     mainClass = `${classes['container-catalog']}`;
   }
   return <main className={mainClass}>{props.children}</main>;

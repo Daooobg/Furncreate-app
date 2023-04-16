@@ -11,9 +11,11 @@ const Home = () => {
         We offer a wide selection of high-quality furniture to fit any style and
         budget.
       </p>
-      <button type="button" className={classes['btn-left']}>
-        Gallery
-      </button>
+      <Link to={'gallery'}>
+        <button type="button" className={classes['btn-left']}>
+          Gallery
+        </button>
+      </Link>
       <Link to={'/catalog'}>
         <button type="button" className={classes['btn-right']}>
           Shop now!

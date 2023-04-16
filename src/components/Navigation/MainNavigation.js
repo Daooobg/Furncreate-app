@@ -91,6 +91,15 @@ function MainNavigation() {
           </li>
           <li className={classes['nav-item']}>
             <Link
+              to="/gallery"
+              onClick={onChangeHandler}
+              className={classes['nav-link']}
+            >
+              Gallery
+            </Link>
+          </li>
+          <li className={classes['nav-item']}>
+            <Link
               to="/"
               onClick={onChangeHandler}
               className={classes['nav-link']}

@@ -1,0 +1,26 @@
+.gallery {
+  position: fixed;
+  overflow: hidden;
+}
+.img-container {
+  line-height: 0;
+  column-count: 4;
+  column-gap: 0;
+  margin: 0 auto;
+
+  padding-top: 10vh;
+  width: 90%;
+}
+
+.gallery-img {
+  width: 100%;
+  transform: scale(1);
+  transition: all 0.2s;
+}
+
+.gallery-img:hover {
+  position: relative;
+  transform: scale(1.1);
+  transition: all 0.4s;
+  z-index: 10;
+}

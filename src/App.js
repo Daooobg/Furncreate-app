@@ -15,6 +15,7 @@ import SingleProductPage from './pages/SingleProductPage';
 import EditPage from './pages/EditPage';
 import CreateProduct from './components/CreateAndEditProduct/CreateProduct';
 import Dashboard from './components/Dashboard/Dashboard';
+import Gallery from './components/Gallery/Gallery';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
         ],
       },
       { path: 'dashboard', element: <Dashboard /> },
+      { path: 'gallery', element: <Gallery /> },
     ],
   },
 ]);
