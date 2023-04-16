@@ -213,7 +213,7 @@ const SingleProduct = () => {
           <div className={classes.reviews}>
             <h2>Last three reviews</h2>
             {product.comments.length < 1 && (
-              <h3>There is not reviews for this product</h3>
+              <h3>There are no reviews for this product.</h3>
             )}
             <div className={classes['reviews-container']}>
               {product.comments
