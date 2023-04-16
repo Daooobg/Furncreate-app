@@ -16,7 +16,6 @@ import Modal from '../../UI/Modal';
 import Reviews from './Reviews';
 import Stars from './Stars';
 
-
 const SingleProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -115,7 +114,7 @@ const SingleProduct = () => {
   if (product.comments) {
     stars = product.comments.reduce((acc, value) => acc + value.rating, 0);
   }
- 
+
   return (
     <>
       {commentsModal && (
@@ -160,7 +159,10 @@ const SingleProduct = () => {
           <h3 className={classes.price}>{formatPrice(product.price)}</h3>
           <h3>
             {stars > 0 && (
-              <Stars stars={stars / product.comments.length} reviews={product.comments.length} />
+              <Stars
+                stars={stars / product.comments.length}
+                reviews={product.comments.length}
+              />
             )}
           </h3>
           <p className={classes.desc}>
@@ -210,17 +212,23 @@ const SingleProduct = () => {
         {product.comments && (
           <div className={classes.reviews}>
             <h2>Last three reviews</h2>
+            {product.comments.length < 1 && (
+              <h3>There is not reviews for this product</h3>
+            )}
             <div className={classes['reviews-container']}>
-              {product.comments.slice(-3).reverse().map((item, index) => {
-                return (
-                  <Reviews
-                    key={index}
-                    reviews={item.comment}
-                    rating={item.rating}
-                    name={item.ownerId.name}
-                  />
-                );
-              })}
+              {product.comments
+                .slice(-3)
+                .reverse()
+                .map((item, index) => {
+                  return (
+                    <Reviews
+                      key={index}
+                      reviews={item.comment}
+                      rating={item.rating}
+                      name={item.ownerId.name}
+                    />
+                  );
+                })}
             </div>
           </div>
         )}
