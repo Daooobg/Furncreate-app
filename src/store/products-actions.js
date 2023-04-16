@@ -162,6 +162,35 @@ export const fetchCreateSingleProductData = (data) => {
   };
 };
 
+export const fetchCreateCommentData = (slug, data) => {
+  return async (dispatch) => {
+    const fetchCreateCommentData = async (product) => {
+      const token =JSON.parse(localStorage.getItem('auth'));
+      const response = await fetch(`http://127.0.0.1:5000/api/v1/furniture/${slug}/comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token.AccessToken,
+        },
+        body: JSON.stringify(product),
+      });
+      if (!response.ok) {
+        throw new Error('Could not send data');
+      }
+      const data = await response.json();
+      // dispatch(productsActions.addProduct(data));
+      // dispatch(productsActions.filter());
+      return data;
+    };
+    try {
+      const product = await fetchCreateCommentData(data);
+      return product;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+};
+
 export const deleteProductData = (id) => {
   return async (dispatch) => {
     const deleteProduct = async (id) => {
