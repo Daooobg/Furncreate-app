@@ -13,8 +13,9 @@ import Loading from '../LoadingSpinner/Loading';
 import { cartActions } from '../../store/cart';
 import { NavigationButtons, ShoppingButtons } from '../../hooks/useButtons';
 import Modal from '../../UI/Modal';
-import Comments from './Comments';
+import Reviews from './Reviews';
 import Stars from './Stars';
+
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -104,7 +105,6 @@ const SingleProduct = () => {
         id: product._id,
       })
     );
-    console.log('text', comment, starsRange);
   };
 
   const changeStarsRangeHandler = (e) => {
@@ -160,7 +160,7 @@ const SingleProduct = () => {
           <h3 className={classes.price}>{formatPrice(product.price)}</h3>
           <h3>
             {stars > 0 && (
-              <Stars stars={stars / product.comments.length} comments={product.comments.length} />
+              <Stars stars={stars / product.comments.length} reviews={product.comments.length} />
             )}
           </h3>
           <p className={classes.desc}>
@@ -208,14 +208,14 @@ const SingleProduct = () => {
       </div>
       <div>
         {product.comments && (
-          <div className={classes.comments}>
-            <h2>Comments</h2>
-            <div className={classes['comments-container']}>
+          <div className={classes.reviews}>
+            <h2>Last three reviews</h2>
+            <div className={classes['reviews-container']}>
               {product.comments.slice(-3).reverse().map((item, index) => {
                 return (
-                  <Comments
+                  <Reviews
                     key={index}
-                    comment={item.comment}
+                    reviews={item.comment}
                     rating={item.rating}
                     name={item.ownerId.name}
                   />

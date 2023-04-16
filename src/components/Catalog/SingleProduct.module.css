@@ -71,10 +71,10 @@
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 }
-.comments {
+.reviews {
   text-align: center;
 }
-.comments-container {
+.reviews-container {
   display: grid;
   grid-template-columns: auto auto auto;
   justify-content: center;
