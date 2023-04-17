@@ -4,11 +4,25 @@
   width: 90vw;
   margin: 0 auto;
   min-height: 70vh;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: auto 1fr;
+  column-gap: 30px;
   align-items: center;
+  justify-items: center;
 }
-.main {
+
+.section h1 {
+  margin: 0 10px;
+  text-transform: capitalize;
+}
+.section a {
+  justify-self: start;
+}
+.section button {
+  font-size: 20px;
+}
+.image {
   max-height: 400px;
+  border-radius: 20px;
 }
 
 .product-center {
@@ -34,8 +48,18 @@
 }
 
 .buttons-container {
+  width: 80%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, auto);
+  gap: 20px;
+  align-items: start;
+}
+
+.buttons-container button {
+  width: 100%;
+}
+.buttons-container a {
+  width: 100%;
 }
 
 .add-container {
@@ -79,5 +103,4 @@
   grid-template-columns: auto auto auto;
   justify-content: center;
   gap: 50px;
-
 }

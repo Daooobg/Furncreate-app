@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLoaderData } from 'react-router-dom';
 
 import { formatPrice } from '../../UI/helpers';
 import {
@@ -19,6 +19,12 @@ import Stars from './Stars';
 const SingleProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const result = useLoaderData();
+  const [role, setRole] = useState('');
+  console.log('role', role);
+  useEffect(() => {
+    setRole(result);
+  }, [result]);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -153,10 +159,13 @@ const SingleProduct = () => {
         </Link>
         <h1>{product.name}</h1>
         <section className={classes['product-center']}>
-          <img src={product.img} alt="main" className={classes.main} />
+          <img src={product.img} alt="main" className={classes.image} />
         </section>
         <section className="content">
-          <h3 className={classes.price}>{formatPrice(product.price)}</h3>
+          <h3>
+            Price:{' '}
+            <span className={classes.price}>{formatPrice(product.price)}</span>
+          </h3>
           <h3>
             {stars > 0 && (
               <Stars
@@ -186,25 +195,43 @@ const SingleProduct = () => {
           </p>
           <hr />
           <div className={classes['buttons-container']}>
-            {product.quantity > 0 && (
-              <div className={classes['add-container']}>
-                <ShoppingButtons action={decreaseHandler} content="-" />
-                <h2>{amount}</h2>
-                <ShoppingButtons action={increaseHandler} content="+" />
+            {/* {role && ( */}
+            {(!role || role === 'user') && product.quantity > 0 && (
+              <div>
+                <div className={classes['add-container']}>
+                  <ShoppingButtons action={decreaseHandler} content="-" />
+                  <h2>{amount}</h2>
+                  <ShoppingButtons action={increaseHandler} content="+" />
+                </div>
+                <NavigationButtons content="add to cart" action={addProduct} />
               </div>
             )}
-            <Link to={`/catalog/${product.slug}/edit`}>
-              <NavigationButtons content="Edit" />
-            </Link>
-            <NavigationButtons action={deleteHandler} content="Delete" />
-
-            {product.quantity > 0 && (
-              <NavigationButtons content="add to cart" action={addProduct} />
+            {role === 'user' && (
+              <>
+                {/* <div className={classes['add-container']}>
+                  <ShoppingButtons action={decreaseHandler} content="-" />
+                  <h2>{amount}</h2>
+                  <ShoppingButtons action={increaseHandler} content="+" />
+                  <NavigationButtons
+                    content="add to cart"
+                    action={addProduct}
+                  />
+                </div> */}
+                <NavigationButtons
+                  content="Add comment"
+                  action={addCommentHandler}
+                />
+              </>
             )}
-            <NavigationButtons
-              content="Add comment"
-              action={addCommentHandler}
-            />
+            {role === 'admin' && (
+              <>
+                <Link to={`/catalog/${product.slug}/edit`}>
+                  <NavigationButtons content="Edit" />
+                </Link>
+                <NavigationButtons action={deleteHandler} content="Delete" />
+              </>
+            )}
+            {/* )} */}
           </div>
         </section>
       </div>
