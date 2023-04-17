@@ -96,7 +96,8 @@ export const fetchEditSingleProductData = (id, authData) => {
         }
       );
       if (!response.ok) {
-        throw new Error('Could not send data');
+        const err = await response.json()
+        throw new Error(err);
       }
       const data = await response.json();
       return data;
@@ -146,7 +147,8 @@ export const fetchCreateSingleProductData = (data) => {
         body: JSON.stringify(product),
       });
       if (!response.ok) {
-        throw new Error('Could not send data');
+        const err = await response.json()
+        throw new Error(err);
       }
       const data = await response.json();
       dispatch(productsActions.addProduct(data));

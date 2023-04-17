@@ -2,11 +2,16 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchCreateSingleProductData } from '../../store/products-actions';
+import Notification from '../Notification/Notification';
 import classes from './CreateProduct.module.css';
 import LoadProductImage from './LoadProductImage';
 import ProductForm from './ProductForm';
 
 const CreateProduct = () => {
+  const [err, setErr] = useState(false);
+  const changeNotificationHandler = () => {
+    setErr(false);
+  }
   const [product, setProduct] = useState({
     color: '',
     img: '',
@@ -30,11 +35,14 @@ const CreateProduct = () => {
           return navigate(`/catalog/`);
         }
       })
-      .catch((error) => console.log('error', error.message));
+      .catch((error) => {
+        changeNotificationHandler()
+        setErr(error)});
   };
 
   return (
     <div className={classes.container}>
+      {err && <Notification closeNotification={changeNotificationHandler}>{err.message}</Notification>}
       <div>
         <LoadProductImage value={product.img} />
       </div>

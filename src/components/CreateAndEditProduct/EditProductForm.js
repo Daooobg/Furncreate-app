@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   fetchEditSingleProductData,
   fetchSingleProductData,
@@ -8,14 +8,18 @@ import {
 
 import classes from './EditProductForm.module.css';
 import LoadProductImage from './LoadProductImage';
-import { productsActions } from '../../store/products-slice';
 import Loading from '../LoadingSpinner/Loading';
 import ProductForm from './ProductForm';
+import Notification from '../Notification/Notification';
 
 const EditProductForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [err, setErr] = useState(false);
+  const changeNotificationHandler = () => {
+    setErr(false);
+  };
   useEffect(() => {
     dispatch(fetchSingleProductData(id));
   }, [dispatch]);
@@ -41,11 +45,15 @@ const EditProductForm = () => {
           return navigate(`/catalog/${slug}`);
         }
       })
-      .catch((error) => console.log('error', error.message));
+      .catch((error) => {
+        changeNotificationHandler();
+        setErr(error);
+      });
   };
 
   return (
     <div className={classes.container}>
+      {err && <Notification closeNotification={changeNotificationHandler}>{err.message}</Notification>}
       <div>
         <LoadProductImage value={product.img} />
       </div>

@@ -30,7 +30,8 @@ export async function action({ request }) {
     body: JSON.stringify(authData),
   });
   if (response.status === 422 || response.status === 401) {
-    return response;
+    const error = await response.json()
+    throw json({ message: error }, { status: response.status });
   }
   if (response.status !== 200) {
     throw json({ message: 'Could not authenticate user.' }, { status: 500 });

@@ -25,6 +25,7 @@ function MainNavigation() {
   const logoutHandler = () => {
     localStorage.removeItem('auth');
     setHamburgerMenu((prevHamburgerMenu) => !prevHamburgerMenu);
+    setToken('')
   };
 
   const dispatch = useDispatch();

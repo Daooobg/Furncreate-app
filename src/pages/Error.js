@@ -1,6 +1,7 @@
 import { useRouteError } from 'react-router-dom';
 
 import PageContent from '../components/Error/PageContent';
+import Notification from '../components/Notification/Notification';
 
 function ErrorPage() {
   const error = useRouteError();
@@ -15,6 +16,10 @@ function ErrorPage() {
   if (error.status === 404) {
     title = 'Not found!';
     message = 'Could not find resource or page.';
+  }
+
+  if (error.status === 401) {
+    return <Notification>{error.data.message}</Notification>
   }
 
   return (
