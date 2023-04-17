@@ -5,7 +5,8 @@ import HomePage from './pages/Home';
 import AuthenticationPage, {
   action as authAction,
 } from './pages/Authentication';
-import { tokenLoader } from './UI/auth';
+import { tokenLoader, getRole } from './UI/auth';
+
 import ErrorPage from './pages/Error';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -32,14 +33,14 @@ const router = createBrowserRouter([
         path: 'catalog',
         children: [
           { index: true, element: <CatalogPage /> },
-          { path: ':id', element: <SingleProductPage /> },
+          { path: ':id', element: <SingleProductPage />, loader: getRole },
           { path: ':id/edit', element: <EditPage /> },
           { path: 'create', element: <CreateProduct /> },
         ],
       },
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'gallery', element: <Gallery /> },
-      {path: 'about', element: <About />}
+      { path: 'about', element: <About /> },
     ],
   },
 ]);
