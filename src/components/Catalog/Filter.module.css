@@ -7,3 +7,9 @@
   border: none;
   text-transform: capitalize;
 }
+
+.form-control input[type='range'] {
+  background-color: chocolate;
+  height: 3px;
+  -webkit-appearance: none;
+}

@@ -11,21 +11,24 @@ const FurnitureList = () => {
   );
 
   return (
-    <div className={classes['container-grid']}>
-      {filtered_products.map((product) => {
-        return (
-          <div key={product._id} className={classes['image-container']}>
-            <img className={classes.img} src={product.img} alt={product.name} />
-            <div className={classes['buttons-container']}>
-              <BsBasket className={classes['shopping-button']} />
-              <Link to={product.slug} title="Details" >
-                <TbListDetails className={classes['details-button']} />
+    <>
+      {filtered_products.length < 1 && <h2 className={classes["not-found"]}>No products found</h2>}
+      <div className={classes['container-grid']}>
+        {filtered_products.map((product) => {
+          return (
+            <div key={product._id} className={classes['image-container']}>
+              <Link to={product.slug} title="Details">
+                <img
+                  className={classes.img}
+                  src={product.img}
+                  alt={product.name}
+                />
               </Link>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

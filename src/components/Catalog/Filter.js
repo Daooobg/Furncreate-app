@@ -31,7 +31,7 @@ const Filter = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <div>
       <div className="form-control">
         <h4>Category</h4>
         <div>
@@ -49,7 +49,7 @@ const Filter = () => {
         </div>
       </div>
 
-      <div className="form-control">
+      <div>
         <h4>Colors</h4>
         <select
           name="color"
@@ -66,7 +66,7 @@ const Filter = () => {
           })}
         </select>
       </div>
-      <div className="form-control">
+      <div className={classes["form-control"]}>
         <h5>Price</h5>
         <p className="price">{formatPrice(price)}</p>
         <input

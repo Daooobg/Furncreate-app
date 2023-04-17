@@ -4,8 +4,14 @@
   text-align: center;
   gap: 20px;
 }
+
+.not-found {
+  text-align: center;
+}
+
 .image-container {
   position: relative;
+  cursor: pointer;
 }
 
 .img {
@@ -13,33 +19,9 @@
   height: 200px;
   object-fit: cover;
 }
-.buttons-container {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  top: 40%;
-  opacity: 0;
-}
 
-.shopping-button {
-  text-decoration: none;
-  height: 40px;
-  width: auto;
-  color: black;
-}
-
-.details-button {
-  text-decoration: none;
-  height: 40px;
-  width: auto;
-  color: black;
-}
-
-.image-container:hover .buttons-container {
-  opacity: 1;
-  backdrop-filter: blur(5px);
+.image-container:hover img {
+  opacity: 0.5;
 }
 
 @media (min-width: 1200px) {
