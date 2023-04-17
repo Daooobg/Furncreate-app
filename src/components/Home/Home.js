@@ -12,12 +12,12 @@ const Home = () => {
         budget.
       </p>
       <Link to={'gallery'}>
-        <button type="button" className={classes['btn-left']}>
+        <button type="button" className={`${classes['btn-left']} ${classes.buttons}`}>
           Gallery
         </button>
       </Link>
       <Link to={'/catalog'}>
-        <button type="button" className={classes['btn-right']}>
+        <button type="button" className={`${classes['btn-right']} ${classes.buttons}`}>
           Shop now!
         </button>
       </Link>

@@ -57,6 +57,12 @@
   animation-fill-mode: backwards;
 }
 
+.buttons:hover {
+  background-color: black;
+  border-color: chocolate;
+  color: white;
+}
+
 @keyframes moveToLeft {
   0% {
     transform: translateX(120px);
