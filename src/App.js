@@ -31,12 +31,13 @@ const router = createBrowserRouter([
       { path: 'auth', element: <AuthenticationPage />, action: authAction },
       {
         path: 'catalog',
+        id:'catalog',
+        loader: getRole,
         children: [
           { index: true, element: <CatalogPage /> },
           {
             path: ':id',
             element: <SingleProductPage />,
-            loader: getRole,
           },
           { path: ':id/edit', element: <EditPage />, loader: restrictToAdmin },
           {

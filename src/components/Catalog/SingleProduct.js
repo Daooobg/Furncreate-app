@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link, useNavigate, useLoaderData } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLoaderData, useRouteLoaderData } from 'react-router-dom';
 
 import { formatPrice } from '../../UI/helpers';
 import {
@@ -19,17 +19,18 @@ import Stars from './Stars';
 const SingleProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const result = useLoaderData();
+  const result = useRouteLoaderData('catalog')
   const [role, setRole] = useState('');
-  console.log('role', role);
+
   useEffect(() => {
     setRole(result);
   }, [result]);
 
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(fetchSingleProductData(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const product = useSelector((state) => state.products.singleProduct);
   const notification = useSelector((state) => state.ui.notification);

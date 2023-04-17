@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useRouteLoaderData } from 'react-router-dom';
 import { NavigationButtons } from '../../hooks/useButtons';
 
 import { productsActions } from '../../store/products-slice';
@@ -8,6 +8,7 @@ import classes from './Filter.module.css';
 
 const Filter = () => {
   const data = useSelector((state) => state.products);
+  const result = useRouteLoaderData('catalog');
   const products = data.products;
   const category = data.filters.category;
   const color = data.filters.colors;
@@ -42,7 +43,7 @@ const Filter = () => {
                 action={updateFiltersHandler}
                 content={c}
                 name="category"
-                category = {category === c.toLowerCase()}
+                category={category === c.toLowerCase()}
               />
             );
           })}
@@ -66,7 +67,7 @@ const Filter = () => {
           })}
         </select>
       </div>
-      <div className={classes["form-control"]}>
+      <div className={classes['form-control']}>
         <h5>Price</h5>
         <p className="price">{formatPrice(price)}</p>
         <input
@@ -78,9 +79,11 @@ const Filter = () => {
           value={price}
         />
       </div>
-      <Link to="create">
-      <NavigationButtons content="create" />
-      </Link>
+      {result === 'admin' && (
+        <Link to="create">
+          <NavigationButtons content="create" />
+        </Link>
+      )}
     </div>
   );
 };
