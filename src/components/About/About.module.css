@@ -1,0 +1,11 @@
+.container {
+  margin: 0 auto;
+  margin-top: 15vh;
+  width: 60%;
+  background-color: white;
+  border-radius: 15px;
+}
+.container h2 {
+    padding:10px 30px ;
+    margin: 0;
+}

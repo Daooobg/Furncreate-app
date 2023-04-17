@@ -100,7 +100,7 @@ function MainNavigation() {
           </li>
           <li className={classes['nav-item']}>
             <Link
-              to="/"
+              to="/about"
               onClick={onChangeHandler}
               className={classes['nav-link']}
             >
