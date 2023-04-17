@@ -5,7 +5,7 @@ import HomePage from './pages/Home';
 import AuthenticationPage, {
   action as authAction,
 } from './pages/Authentication';
-import { tokenLoader, getRole } from './UI/auth';
+import { tokenLoader, getRole, restrictToAdmin } from './UI/auth';
 
 import ErrorPage from './pages/Error';
 import { useDispatch } from 'react-redux';
@@ -33,9 +33,17 @@ const router = createBrowserRouter([
         path: 'catalog',
         children: [
           { index: true, element: <CatalogPage /> },
-          { path: ':id', element: <SingleProductPage />, loader: getRole },
-          { path: ':id/edit', element: <EditPage /> },
-          { path: 'create', element: <CreateProduct /> },
+          {
+            path: ':id',
+            element: <SingleProductPage />,
+            loader: getRole,
+          },
+          { path: ':id/edit', element: <EditPage />, loader: restrictToAdmin },
+          {
+            path: 'create',
+            element: <CreateProduct />,
+            loader: restrictToAdmin,
+          },
         ],
       },
       { path: 'dashboard', element: <Dashboard /> },
