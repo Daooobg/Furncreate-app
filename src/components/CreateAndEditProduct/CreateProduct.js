@@ -11,7 +11,7 @@ const CreateProduct = () => {
   const [err, setErr] = useState(false);
   const changeNotificationHandler = () => {
     setErr(false);
-  }
+  };
   const [product, setProduct] = useState({
     color: '',
     img: '',
@@ -22,6 +22,7 @@ const CreateProduct = () => {
     shortDescription: '',
     type: '',
     warranty: '',
+    description: '',
   });
 
   const dispatch = useDispatch();
@@ -36,13 +37,18 @@ const CreateProduct = () => {
         }
       })
       .catch((error) => {
-        changeNotificationHandler()
-        setErr(error)});
+        changeNotificationHandler();
+        setErr(error);
+      });
   };
 
   return (
     <div className={classes.container}>
-      {err && <Notification closeNotification={changeNotificationHandler}>{err.message}</Notification>}
+      {err && (
+        <Notification closeNotification={changeNotificationHandler}>
+          {err.message}
+        </Notification>
+      )}
       <div>
         <LoadProductImage value={product.img} />
       </div>

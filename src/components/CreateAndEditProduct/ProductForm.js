@@ -62,6 +62,11 @@ const ProductForm = ({ submitHandler, product, setProduct }) => {
         ...state,
         [e.target.name]: e.target.value >= 0,
       }));
+    } else if (e.target.name === 'description') {
+      setErrors((state) => ({
+        ...state,
+        [e.target.name]: e.target.value.trim().length >= 5,
+      }));
     }
   };
 
@@ -223,6 +228,24 @@ const ProductForm = ({ submitHandler, product, setProduct }) => {
             <label htmlFor="warranty">{label('Warranty')}</label>
             {isTouched.warranty && !errors.warranty && (
               <p className={classes.error}>Warranty must be positive number</p>
+            )}
+          </div>
+          <div className={classes['form-control']}>
+            <textarea
+              className={product.description ? classes['span-move--up'] : ''}
+              id="description"
+              type="text"
+              name="description"
+              required
+              value={product.description}
+              onChange={onChangeHandler}
+              onBlur={onBlurHandler}
+            />
+            <label htmlFor="description">{label('Description')}</label>
+            {isTouched.description && !errors.description && (
+              <p className={classes.error}>
+                Description must have at least5 characters
+              </p>
             )}
           </div>
           <div>
