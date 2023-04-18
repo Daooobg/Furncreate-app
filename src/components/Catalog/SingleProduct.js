@@ -176,11 +176,8 @@ const SingleProduct = () => {
             )}
           </h3>
           <p className={classes.desc}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis
-            atque quia, deleniti nam aut, obcaecati quae fugit ipsam fuga velit
-            adipisci? Quasi iusto iste corrupti ea quo dignissimos, a repellat
-            quidem repudiandae fugiat placeat nulla libero ratione porro,
-            doloribus excepturi.
+            <span>Description: </span>
+            {product.description}
           </p>
           <p className={classes.info}>
             <span>Available: </span>
