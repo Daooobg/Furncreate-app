@@ -22,7 +22,7 @@ const EditProductForm = () => {
   };
   useEffect(() => {
     dispatch(fetchSingleProductData(id));
-  }, [dispatch]);
+  }, [dispatch,id]);
 
   const productData = useSelector((state) => state.products.singleProduct);
   const notification = useSelector((state) => state.ui.notification);
