@@ -2,27 +2,56 @@ import { Link } from 'react-router-dom';
 
 import classes from './ProductForm.module.css';
 import { label } from '../../UI/splitLabel';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ShoppingButtons } from '../../hooks/useButtons';
 
 const ProductForm = ({ submitHandler, product, setProduct }) => {
   const startUrl = /^(https?:\/)?\/.*/i;
 
   const [errors, setErrors] = useState({
+    color: false,
+    img: false,
     name: false,
-    email: false,
-    password: false,
-    repeatPassword: false,
-    passwordsMatch: false,
+    partNumber: false,
+    price: false,
+    quantity: false,
+    shortDescription: false,
+    warranty: false,
+    description: false,
   });
 
   const [isTouched, setIsTouched] = useState({
+    color: false,
+    img: false,
     name: false,
-    email: false,
-    password: false,
-    repeatPassword: false,
-    passwordsMatch: false,
+    partNumber: false,
+    price: false,
+    quantity: false,
+    shortDescription: false,
+    type: false,
+    warranty: false,
+    description: false,
   });
+
+  const [formIsValid, setFormIsValid] = useState(false);
+console.log(formIsValid, errors)
+  useEffect(() => {
+    if (
+      errors.color &&
+      errors.img &&
+      errors.name &&
+      errors.partNumber &&
+      errors.price &&
+      errors.quantity &&
+      errors.shortDescription &&
+      errors.warranty &&
+      errors.description
+    ) {
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+  }, [errors]);
 
   const onChangeHandler = (e) => {
     setProduct((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -249,7 +278,7 @@ const ProductForm = ({ submitHandler, product, setProduct }) => {
             )}
           </div>
           <div>
-            <ShoppingButtons content="Submit" />
+            <ShoppingButtons content="Submit" disabled={!formIsValid}/>
             <Link to={`/catalog/${product.slug ? product.slug : ''}`}>
               <ShoppingButtons content="Go Back" />
             </Link>
