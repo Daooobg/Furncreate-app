@@ -4,7 +4,9 @@ import { uiActions } from './ui-slice';
 export const fetchProductsData = () => {
   return async (dispatch) => {
     const fetchData = async () => {
-      const response = await fetch('http://127.0.0.1:5000/api/v1/furniture/');
+      // const response = await fetch('http://127.0.0.1:5000/api/v1/furniture/');
+      const response = await fetch('https://furncreate-server.herokuapp.com/api/v1/furniture/');
+
       if (!response.ok) {
         throw new Error('Could not fetch data');
       }
@@ -53,7 +55,7 @@ export const fetchSingleProductData = (id) => {
   return async (dispatch) => {
     const fetchSingleData = async (id) => {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/v1/furniture/${id}`
+        `https://furncreate-server.herokuapp.com/api/v1/furniture/${id}`
       );
       if (!response.ok) {
         throw new Error('Could not fetch data');
@@ -85,7 +87,7 @@ export const fetchEditSingleProductData = (id, authData) => {
     const fetchEditSingleData = async (id) => {
       const token =JSON.parse(localStorage.getItem('auth'));
       const response = await fetch(
-        `http://127.0.0.1:5000/api/v1/furniture/${id}`,
+        `https://furncreate-server.herokuapp.com/api/v1/furniture/${id}`,
         {
           method: 'PATCH',
           headers: {
@@ -138,7 +140,7 @@ export const fetchCreateSingleProductData = (data) => {
   return async (dispatch) => {
     const fetchCreateSingleData = async (product) => {
       const token =JSON.parse(localStorage.getItem('auth'));
-      const response = await fetch(`http://127.0.0.1:5000/api/v1/furniture/`, {
+      const response = await fetch(`https://furncreate-server.herokuapp.com/api/v1/furniture/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -168,7 +170,7 @@ export const fetchCreateCommentData = (slug, data) => {
   return async (dispatch) => {
     const fetchCreateCommentData = async (product) => {
       const token =JSON.parse(localStorage.getItem('auth'));
-      const response = await fetch(`http://127.0.0.1:5000/api/v1/furniture/${slug}/comments`, {
+      const response = await fetch(`https://furncreate-server.herokuapp.com/api/v1/furniture/${slug}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -198,7 +200,7 @@ export const deleteProductData = (id) => {
     const deleteProduct = async (id) => {
       const token =JSON.parse(localStorage.getItem('auth'));
       const response = await fetch(
-        `http://127.0.0.1:5000/api/v1/furniture/${id}`,
+        `https://furncreate-server.herokuapp.com/api/v1/furniture/${id}`,
         {
           method: 'DELETE',
           headers: {

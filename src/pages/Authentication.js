@@ -22,7 +22,9 @@ export async function action({ request }) {
     repeatPassword: data.get('repeatPassword'),
   };
 
-  const response = await fetch('http://localhost:5000/api/v1/users/' + mode, {
+  // const response = await fetch('http://localhost:5000/api/v1/users/' + mode, {
+  const response = await fetch('https://furncreate-server.herokuapp.com/api/v1/users/' + mode, {
+
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
