@@ -34,7 +34,6 @@ const ProductForm = ({ submitHandler, product, setProduct }) => {
   });
 
   const [formIsValid, setFormIsValid] = useState(false);
-console.log(formIsValid, errors)
   useEffect(() => {
     if (
       errors.color &&
@@ -278,7 +277,7 @@ console.log(formIsValid, errors)
             )}
           </div>
           <div>
-            <ShoppingButtons content="Submit" disabled={!formIsValid}/>
+            <ShoppingButtons content="Submit" disabled={!formIsValid} />
             <Link to={`/catalog/${product.slug ? product.slug : ''}`}>
               <ShoppingButtons content="Go Back" />
             </Link>
