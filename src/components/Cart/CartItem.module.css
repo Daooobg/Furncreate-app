@@ -9,11 +9,11 @@
 
 .cart-item h2 {
   margin: 0 0 0.5rem 0;
-  color: #363636;
+  color: white;
+  text-transform: capitalize;
 }
 
 .summary {
-  /* width: 10rem; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +21,6 @@
 
 .price {
   font-weight: bold;
-  color: #8a2b06;
 }
 
 .amount {
@@ -29,17 +28,26 @@
   border: 1px solid #ccc;
   padding: 0.25rem 0.75rem;
   border-radius: 6px;
-  color: #363636;
+}
+
+.text-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
 }
 
 .actions {
   display: flex;
   flex-direction: column;
 }
+.cart-item button {
+  width: 45px;
+}
+
 .image {
   width: 100px;
   height: 100%;
-  /* object-fit: cover; */
+  border-radius: 15px;
 }
 
 @media (min-width: 768px) {

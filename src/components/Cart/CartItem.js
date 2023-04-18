@@ -57,6 +57,10 @@ const CartItem = (props) => {
           </div>
         )}
         <div>
+          <div className={classes["text-container"]}>
+            <h5>Price</h5>
+            <h5>Total</h5>
+          </div>
           <div className={classes.summary}>
             <span className={classes.price}>{formatPrice(props.price)}</span>
             <span className={classes.amount}>x {props.amount}</span>
