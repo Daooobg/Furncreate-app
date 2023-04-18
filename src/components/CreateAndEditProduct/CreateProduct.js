@@ -25,6 +25,18 @@ const CreateProduct = () => {
     description: '',
   });
 
+  const [errors, setErrors] = useState({
+    color: false,
+    img: false,
+    name: false,
+    partNumber: false,
+    price: false,
+    quantity: false,
+    shortDescription: false,
+    warranty: false,
+    description: false,
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -56,6 +68,8 @@ const CreateProduct = () => {
         submitHandler={submitHandler}
         setProduct={setProduct}
         product={product}
+        setErrors={setErrors}
+        errors={errors}
       />
     </div>
   );

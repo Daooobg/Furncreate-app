@@ -5,20 +5,14 @@ import { label } from '../../UI/splitLabel';
 import { useEffect, useState } from 'react';
 import { ShoppingButtons } from '../../hooks/useButtons';
 
-const ProductForm = ({ submitHandler, product, setProduct }) => {
+const ProductForm = ({
+  submitHandler,
+  product,
+  setProduct,
+  errors,
+  setErrors,
+}) => {
   const startUrl = /^(https?:\/)?\/.*/i;
-
-  const [errors, setErrors] = useState({
-    color: false,
-    img: false,
-    name: false,
-    partNumber: false,
-    price: false,
-    quantity: false,
-    shortDescription: false,
-    warranty: false,
-    description: false,
-  });
 
   const [isTouched, setIsTouched] = useState({
     color: false,
@@ -34,6 +28,7 @@ const ProductForm = ({ submitHandler, product, setProduct }) => {
   });
 
   const [formIsValid, setFormIsValid] = useState(false);
+  
   useEffect(() => {
     if (
       errors.color &&
@@ -54,7 +49,6 @@ const ProductForm = ({ submitHandler, product, setProduct }) => {
 
   const onChangeHandler = (e) => {
     setProduct((state) => ({ ...state, [e.target.name]: e.target.value }));
-
     if (e.target.name === 'name') {
       setErrors((state) => ({
         ...state,

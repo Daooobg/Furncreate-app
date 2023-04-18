@@ -17,12 +17,25 @@ const EditProductForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [err, setErr] = useState(false);
+  const [errors, setErrors] = useState({
+    color: true,
+    img: true,
+    name: true,
+    partNumber: true,
+    price: true,
+    quantity: true,
+    shortDescription: true,
+    warranty: true,
+    description: true,
+  });
+  
   const changeNotificationHandler = () => {
     setErr(false);
   };
+
   useEffect(() => {
     dispatch(fetchSingleProductData(id));
-  }, [dispatch,id]);
+  }, [dispatch, id]);
 
   const productData = useSelector((state) => state.products.singleProduct);
   const notification = useSelector((state) => state.ui.notification);
@@ -53,7 +66,11 @@ const EditProductForm = () => {
 
   return (
     <div className={classes.container}>
-      {err && <Notification closeNotification={changeNotificationHandler}>{err.message}</Notification>}
+      {err && (
+        <Notification closeNotification={changeNotificationHandler}>
+          {err.message}
+        </Notification>
+      )}
       <div>
         <LoadProductImage value={product.img} />
       </div>
@@ -61,6 +78,8 @@ const EditProductForm = () => {
         submitHandler={submitHandler}
         product={product}
         setProduct={setProduct}
+        errors={errors}
+        setErrors={setErrors}
       />
     </div>
   );
