@@ -25,3 +25,21 @@
 <img src="public/assets/readme/links-furncreate.web.app.png" alt="home page">
 
 * ### Catalog - The catalogue page consists of a list of products, there on the left side are filters by type, color and price. On the top side, there is a sort and filter by product name.
+
+<img src="public/assets/readme/catalog-furncreate.web.app.png" alt="catalog">
+
+* ### Dashboard for admin
+
+<img src="public/assets/readme/dashboard-furncreate-app.web.app.png" alt="dashboard">
+
+* * Products - You can check edit and delete products
+
+<img src="public/assets/readme/dashboard-products-furncreate-app.web.app.png" alt="products">
+
+* * Users - you can check and edit role for users
+
+<img src="public/assets/readme/dashboard-users-furncreate-app.web.app.png" alt="products">
+
+* * Purchase - you can see all purchase
+
+<img src="public/assets/readme/dashboard-purchase-furncreate-app.web.app.png" alt="products">
