@@ -1,0 +1,21 @@
+.container {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 6vh;
+    background-color: black;
+    text-align: center;
+    color: chocolate;
+    justify-content: space-evenly
+}
+a {
+    text-decoration: none;
+    color: chocolate;
+    padding: 0 10px;
+}
+.container p {
+    margin: 0;
+}
+
+.container h3 {
+    display: inline-block;
+}

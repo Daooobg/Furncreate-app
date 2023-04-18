@@ -1,6 +1,6 @@
 .container-main {
   width: 100%;
-  height: 100vh;
+  height: 94vh;
   background: linear-gradient(
       rgba(0, 0, 0, 0.4),
       rgba(148, 48, 48, 0.2),
@@ -16,5 +16,5 @@
 .container-catalog {
   background-color: antiquewhite;
   width: 100%;
-  min-height: 100vh;
+  min-height: 94vh;
 }
